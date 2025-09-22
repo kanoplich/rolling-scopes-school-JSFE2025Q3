@@ -1,0 +1,16 @@
+.header {
+  width: 100%;
+  background-color: var(--color-primary);
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,8 @@
+:root {
+  --color-primary: #222222;
+  --color-secondary: #ffffff;
+  --color-accent: #ff3c3c;
+
+  --font-family-primary: 'Mulish', sans-serif;
+  --font-family-secondary: 'Oswald', sans-serif;
+}
