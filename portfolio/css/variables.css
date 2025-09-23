@@ -5,4 +5,8 @@
 
   --font-family-primary: 'Mulish', sans-serif;
   --font-family-secondary: 'Oswald', sans-serif;
+
+  --size-desktop: 1440px;
+  --size-table: 768px;
+  --size-phone: 380px;
 }

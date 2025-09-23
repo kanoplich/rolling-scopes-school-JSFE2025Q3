@@ -1,0 +1,119 @@
+.hero {
+  display: none;
+  width: 100%;
+  background-color: var(--color-primary);
+}
+
+.hero__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 3.75rem;
+  min-height: 862px;
+  padding: 3.75rem 0;
+}
+
+.hero__trophy_wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.trophy__data,
+.trophy__label {
+  transform: rotate(-90deg);
+}
+
+.trophy__line {
+  border-bottom: 1px solid var(--color-secondary);
+  transform: rotate(-90deg);
+}
+
+.hero__title_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hero__achievement_wrapper {
+  display: flex;
+  gap: 3.75rem;
+  color: var(--color-secondary);
+}
+
+.achievement__count {
+  font-family: var(--font-family-secondary);
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.achievement__text {
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.achievement__block {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__title {
+  font-family: var(--font-family-secondary);
+  font-size: 7rem;
+  font-weight: 300;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+}
+
+.hero__text {
+  font-family: var(--font-family-secondary);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+}
+
+.hero__picture {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.hero__label_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hero__label_img {
+  display: block;
+  max-width: 280px;
+  height: 374px;
+  object-fit: cover;
+}
+
+.hero__label_text {
+  max-width: 220px;
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-secondary);
+}
+
+.btn__scroll {
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-secondary);
+}
