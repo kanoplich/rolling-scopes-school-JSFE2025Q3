@@ -4,11 +4,10 @@
 .about__wrapper {
   display: flex;
   gap: 2.5rem;
-  min-height: 748px;
-  margin: 0 1.25rem;
+  padding: 0 1.25rem;
 }
 .about__item {
-  flex: 1;
+  flex: 1 1 0;
   height: 100%;
 }
 .about__img {
@@ -17,10 +16,8 @@
   object-fit: cover;
   margin-bottom: 2.5rem;
 }
-.about__title {
-  margin-bottom: 0.75rem;
-}
-.text {
+
+.about__wrapper .about__item:nth-child(2) .text {
   margin-bottom: 2.5rem;
 }
 

@@ -1,0 +1,10 @@
+.portfolio {
+  width: 100%;
+  background-color: var(--color-primary);
+  padding: 3.75rem 0;
+}
+
+.portfolio__title,
+.portfolio__text {
+  color: var(--color-secondary);
+}

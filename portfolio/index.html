@@ -8,9 +8,10 @@
     href="https://fonts.googleapis.com/css?family=Mulish:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700" rel="stylesheet" />
+  <link rel="shortcut icon" href="./assets/image/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/style.css">
   <script type="module" src="./js/main.js" defer></script>
-  <title>Document</title>
+  <title>Portfolio</title>
 </head>
 
 <body>
@@ -22,6 +23,9 @@
             <img src="./assets/image/logo.png" alt="Portfolio" loading="lazy">
           </a>
         </div>
+        <button class="burger">
+          <span class="burger__line"></span>
+        </button>
         <nav class="header__nav">
           <ul class="nav__list">
             <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
@@ -39,35 +43,34 @@
       <div class="container">
         <div class="hero__wrapper">
           <div class="hero__trophy_wrapper">
-            <p class="trophy__data">2025</p>
+            <span class="trophy__label">Best Photographer by MAX</span>
             <div class="trophy__line"></div>
-            <p class="trophy__label">Best Photographer by MAX</p>
+            <span class="trophy__data">2025</span>
           </div>
           <div class="hero__title_wrapper">
             <div class="hero__achievement_wrapper">
               <div class="achievement__block">
-                <span class="achievement__count">487</span>
+                <span class="achievement__count">+ 487</span>
                 <span class="achievement__text">Photo sessions</span>
               </div>
               <div class="achievement__block">
-                <span class="achievement__count">356</span>
+                <span class="achievement__count">+ 356</span>
                 <span class="achievement__text">Satisfied clients</span>
               </div>
             </div>
-            <h1 class="hero__title">Professional photographer</h1>
-            <h3 class="hero__text">Capture the Moment. Tell Your Story.</h3>
+            <h1 class="hero__title title-1">Professional photographer</h1>
+            <h3 class="hero__subtitle title-3">Capture the Moment. Tell Your Story.</h3>
             <button class="btn__scroll">Scroll down</button>
           </div>
-          <div class="hero__picture_wrapper">
-            <picture>
-              <source srcset="./assets/image/webp/img-10.webp" type="image/webp">
-              <img class="hero__picture" src="./assets/image/png/img-10.png" alt="I'm in the mountains">
-            </picture>
-          </div>
+
+          <picture>
+            <source srcset="./assets/image/webp/img-10.webp" type="image/webp">
+            <img class="hero__picture" src="./assets/image/png/img-10.png" alt="I'm in the mountains">
+          </picture>
           <div class="hero__label_wrapper">
             <picture>
               <source srcset="./assets/image/webp/img-11.webp" type="image/webp">
-              <img class="hero__label_img" src="./assets/image/png/img-11.png" alt="I'm in the mountains">
+              <img class="hero__label_img" src="./assets/image/png/img-11.png" alt="I am Vera">
             </picture>
             <p class="hero__label_text">Hi! I’m Vera, a photographer. For me, photography is more than just an image.
             </p>
@@ -105,6 +108,14 @@
             <p class="about__text text">Seeing with heart. Shooting with soul.</p>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <h2 class="portfolio__title title-2">My portfolio</h2>
+        <p class="portfolio__text text">Every shoot is a story. Here you’ll find portraits, love stories, family
+          sessions, and more.</p>
+        <div class="portfolio__slider"></div>
       </div>
     </section>
   </main>

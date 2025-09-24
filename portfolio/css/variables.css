@@ -9,4 +9,6 @@
   --size-desktop: 1440px;
   --size-table: 768px;
   --size-phone: 380px;
+
+  --transition: all 0.2s ease-in;
 }

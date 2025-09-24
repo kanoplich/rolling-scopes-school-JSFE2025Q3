@@ -1,5 +1,5 @@
 .hero {
-  display: none;
+  padding: 3.75rem 0;
   width: 100%;
   background-color: var(--color-primary);
 }
@@ -7,33 +7,41 @@
 .hero__wrapper {
   display: flex;
   justify-content: space-between;
-  gap: 3.75rem;
-  min-height: 862px;
-  padding: 3.75rem 0;
+  gap: 0 2.5rem;
+  padding: 0 1.25rem;
 }
 
 .hero__trophy_wrapper {
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   font-family: var(--font-family-primary);
-  font-size: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
   font-weight: 500;
   color: var(--color-secondary);
 }
 
 .trophy__data,
 .trophy__label {
-  transform: rotate(-90deg);
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  transform: rotate(180deg);
+  display: inline-block;
 }
 
 .trophy__line {
-  border-bottom: 1px solid var(--color-secondary);
-  transform: rotate(-90deg);
+  border: 0.5px solid var(--color-secondary);
+  height: 100%;
+  margin: 0.75rem 0;
 }
 
 .hero__title_wrapper {
+  flex: 1 1 0;
+  margin-left: 1.25rem;
+  margin-top: 5.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,7 +50,7 @@
 
 .hero__achievement_wrapper {
   display: flex;
-  gap: 3.75rem;
+  gap: 0 3.75rem;
   color: var(--color-secondary);
 }
 
@@ -53,6 +61,7 @@
 }
 
 .achievement__text {
+  margin-left: 27px;
   font-family: var(--font-family-primary);
   font-size: 1rem;
   font-weight: 400;
@@ -65,44 +74,41 @@
 }
 
 .hero__title {
-  font-family: var(--font-family-secondary);
-  font-size: 7rem;
-  font-weight: 300;
-  color: var(--color-secondary);
-  text-transform: uppercase;
+  margin-top: 2.5rem;
 }
 
-.hero__text {
-  font-family: var(--font-family-secondary);
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.75;
+.hero__subtitle {
+  margin-top: 2.5rem;
+  margin-bottom: 10rem;
   color: var(--color-secondary);
-  text-transform: uppercase;
 }
 
 .hero__picture {
-  width: 220px;
+  margin-top: 16.25rem;
+  width: 13.75rem;
   height: 220px;
+  display: block;
   object-fit: cover;
 }
 
 .hero__label_wrapper {
+  max-width: 17.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .hero__label_img {
   display: block;
-  max-width: 280px;
+  width: 100%;
   height: 374px;
   object-fit: cover;
 }
 
 .hero__label_text {
-  max-width: 220px;
+  max-width: 13.75rem;
+  text-align: end;
   font-family: var(--font-family-primary);
   font-size: 1rem;
   line-height: 1.5;
@@ -110,10 +116,8 @@
   color: var(--color-secondary);
 }
 
-.btn__scroll {
-  font-family: var(--font-family-primary);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--color-secondary);
+@media screen and (max-width: 980px) {
+  .hero__picture {
+    display: none;
+  }
 }

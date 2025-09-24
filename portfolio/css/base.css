@@ -1,14 +1,20 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   margin: 0 auto;
   max-width: var(--size-desktop);
-  width: calc(100% - 30px);
+  width: calc(100% - 20px);
 }
 
 .title-1 {
   font-family: var(--font-family-secondary);
-  font-size: 7rem;
+  font-size: 7.25rem;
   font-weight: 300;
+  line-height: 1.125;
   text-transform: uppercase;
+  color: var(--color-secondary);
 }
 
 .title-2 {
@@ -17,13 +23,14 @@
   font-weight: 400;
   line-height: 1.25;
   text-transform: uppercase;
+  margin-bottom: 0.75rem;
 }
 
 .title-3 {
   font-family: var(--font-family-secondary);
   font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
@@ -32,4 +39,41 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.btn__scroll {
+  position: relative;
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.btn__scroll::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-image: url('../assets/icons/arrow-down_white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: var(--transition);
+}
+
+.btn__scroll:hover {
+  color: var(--color-accent);
+}
+
+.btn__scroll:hover::after {
+  background-image: url('../assets/icons/arrow-down_red.svg');
+}
+
+@media screen and (max-width: 1170px) {
+  .title-1 {
+    font-size: 4.25rem;
+  }
 }
