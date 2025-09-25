@@ -112,3 +112,11 @@ html {
     font-size: 4.25rem;
   }
 }
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
