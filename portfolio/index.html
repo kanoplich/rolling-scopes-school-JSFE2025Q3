@@ -26,7 +26,7 @@
         <button class="burger">
           <span class="burger__line"></span>
         </button>
-        <nav class="header__nav">
+        <nav class="header__nav" aria-label="main menu">
           <ul class="nav__list">
             <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
             <li class="nav__item"><a href="#portfolio" class="nav__link">Portfolio</a></li>
@@ -304,8 +304,30 @@
         </div>
       </div>
     </section>
+    <section class="contacts" id="contacts">
+      <div class="container">
+        <h3 class="contacts__title title-3">Like my portfolio? Sign up for a shoot!</h3>
+        <form class="contacts__form">
+          <input type="text" class="form-input text" placeholder="Your name" required>
+          <input type="tel" class="form-input text" placeholder="+1" required>
+          <button type="submit" class="form-btn btn">Book now</button>
+        </form>
+      </div>
+    </section>
   </main>
-  <footer></footer>
+  <footer class="footer">
+    <div class="container">
+      <nav class="footer__nav" aria-label="social network links and phone">
+        <ul class="footer__nav_list">
+          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Instagram</a></li>
+          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Telegram</a></li>
+          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Whatsapp</a></li>
+          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Europe</a></li>
+          <li class="nav__item"><a href="tel:+12349843572" class="nav__link" target="_blank">+1 234 9843572</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
 </body>
 
 </html>
