@@ -27,14 +27,17 @@
     gap: 0;
   }
   .about__img {
-    height: 768px;
+    height: 728px;
+  }
+  .about__wrapper .about__item:nth-child(2) .text {
+    margin: 2.5rem 0;
   }
   .about__wrapper .about__item:nth-child(3) img {
     display: none;
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 480px) {
   .about__img {
     height: 340px;
   }

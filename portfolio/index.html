@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link
     href="https://fonts.googleapis.com/css?family=Mulish:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700" rel="stylesheet" />
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,regular,500,600,700" rel="stylesheet">
   <link rel="shortcut icon" href="./assets/image/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/style.css">
-  <script type="module" src="./js/main.js" defer></script>
+  <script type="module" src="./js/main.js"></script>
   <title>Portfolio</title>
 </head>
 
@@ -24,6 +24,7 @@
           </a>
         </div>
         <button class="burger">
+          <span class="burger__line"></span>
           <span class="burger__line"></span>
         </button>
         <nav class="header__nav" aria-label="main menu">
@@ -47,33 +48,34 @@
             <div class="trophy__line"></div>
             <span class="trophy__data">2025</span>
           </div>
-          <div class="hero__title_wrapper">
-            <div class="hero__achievement_wrapper">
-              <div class="achievement__block">
-                <span class="achievement__count">+ 487</span>
-                <span class="achievement__text">Photo sessions</span>
+          <div class="hero__wrapper_inner">
+            <div class="hero__title_wrapper">
+              <div class="hero__achievement_wrapper">
+                <div class="achievement__block">
+                  <span class="achievement__count">+ 487</span>
+                  <span class="achievement__text">Photo sessions</span>
+                </div>
+                <div class="achievement__block">
+                  <span class="achievement__count">+ 356</span>
+                  <span class="achievement__text">Satisfied clients</span>
+                </div>
               </div>
-              <div class="achievement__block">
-                <span class="achievement__count">+ 356</span>
-                <span class="achievement__text">Satisfied clients</span>
-              </div>
+              <h1 class="hero__title title-1">Professional photographer</h1>
+              <p class="hero__subtitle title-3">Capture the Moment. Tell Your Story.</p>
+              <a href="#about" class="btn__scroll">Scroll down</a>
             </div>
-            <h1 class="hero__title title-1">Professional photographer</h1>
-            <p class="hero__subtitle title-3">Capture the Moment. Tell Your Story.</p>
-            <button class="btn__scroll">Scroll down</button>
-          </div>
-
-          <picture>
-            <source srcset="./assets/image/webp/img-10.webp" type="image/webp">
-            <img class="hero__img" src="./assets/image/png/img-10.png" alt="I'm in the mountains" loading="lazy">
-          </picture>
-          <div class="hero__item_wrapper">
             <picture>
-              <source srcset="./assets/image/webp/img-11.webp" type="image/webp">
-              <img class="hero__item_img" src="./assets/image/png/img-11.png" alt="I am Vera" loading="lazy">
+              <source srcset="./assets/image/webp/img-10.webp" type="image/webp">
+              <img class="hero__img" src="./assets/image/png/img-10.png" alt="I'm in the mountains" loading="lazy">
             </picture>
-            <p class="hero__item_text">Hi! I’m Vera, a photographer. For me, photography is more than just an image.
-            </p>
+            <div class="hero__item_wrapper">
+              <picture>
+                <source srcset="./assets/image/webp/img-11.webp" type="image/webp">
+                <img class="hero__item_img" src="./assets/image/png/img-11.png" alt="I am Vera" loading="lazy">
+              </picture>
+              <p class="hero__item_text">Hi! I’m Vera, a photographer. For me, photography is more than just an image.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -122,58 +124,81 @@
           <div class="area middle"></div>
           <div class="area right" id="areaRight"></div>
           <div class="slider" id="slider">
-            <picture>
-              <source srcset="./assets/image/webp/img-14.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-14.png" alt="slide 14" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-21.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-21.png" alt="slide 21" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-22.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-22.png" alt="slide 22" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-20.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-20.png" alt="slide 20" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-17.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-17.png" alt="slide 17" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-1.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-1.png" alt="slide 1" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-2.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-2.png" alt="slide 2" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-5.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-5.png" alt="slide 5" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-7.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-7.png" alt="slide 7" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-8.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-8.png" alt="slide 8" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-9.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-9.png" alt="slide 9" loading="lazy"></div>
-            </picture>
-            <picture>
-              <source srcset="./assets/image/webp/img-12.webp" type="image/webp">
-              <div class="slide"><img src="./assets/image/png/img-12.png" alt="slide 12" loading="lazy"></div>
-            </picture>
+            <div class="slide slide--large slide--end">
+              <picture>
+                <source srcset="./assets/image/webp/img-14.webp" type="image/webp">
+                <img src="./assets/image/png/img-14.png" alt="slide 14" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--small">
+              <picture>
+                <source srcset="./assets/image/webp/img-21.webp" type="image/webp">
+                <img src="./assets/image/png/img-21.png" alt="slide 21" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--medium slide--center">
+              <picture>
+                <source srcset="./assets/image/webp/img-22.webp" type="image/webp">
+                <img src="./assets/image/png/img-22.png" alt="slide 22" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--large slide--start">
+              <picture>
+                <source srcset="./assets/image/webp/img-20.webp" type="image/webp">
+                <img src="./assets/image/png/img-20.png" alt="slide 20" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--medium slide--center">
+              <picture>
+                <source srcset="./assets/image/webp/img-17.webp" type="image/webp">
+                <img src="./assets/image/png/img-17.png" alt="slide 17" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--small">
+              <picture>
+                <source srcset="./assets/image/webp/img-1.webp" type="image/webp">
+                <img src="./assets/image/png/img-1.png" alt="slide 1" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--medium slide--start">
+              <picture>
+                <source srcset="./assets/image/webp/img-2.webp" type="image/webp">
+                <img src="./assets/image/png/img-2.png" alt="slide 2" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--large slide--end">
+              <picture>
+                <source srcset="./assets/image/webp/img-5.webp" type="image/webp">
+                <img src="./assets/image/png/img-5.png" alt="slide 5" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--small">
+              <picture>
+                <source srcset="./assets/image/webp/img-7.webp" type="image/webp">
+                <img src="./assets/image/png/img-7.png" alt="slide 7" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--medium slide--start">
+              <picture>
+                <source srcset="./assets/image/webp/img-8.webp" type="image/webp">
+                <img src="./assets/image/png/img-8.png" alt="slide 8" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--medium slide--center">
+              <picture>
+                <source srcset="./assets/image/webp/img-9.webp" type="image/webp">
+                <img src="./assets/image/png/img-9.png" alt="slide 9" loading="lazy">
+              </picture>
+            </div>
+            <div class="slide slide--large slide--start">
+              <picture>
+                <source srcset="./assets/image/webp/img-12.webp" type="image/webp">
+                <img src="./assets/image/png/img-12.png" alt="slide 12" loading="lazy">
+              </picture>
+            </div>
           </div>
         </div>
       </div>
-
     </section>
     <section class="price" id="price">
       <div class="container">
@@ -267,7 +292,7 @@
                 <h3 class="title-3">How do I book a shoot?</h3>
               </div>
               <div class="faq__answer">
-                <p class="text">Super simple - just message me through any convenient platform
+                <p class="text">Super simple – just message me through any convenient platform
                   (Instagram, Telegram, WhatsApp, or the contact form on this site). We’ll discuss your preferred
                   date,
                   city,
@@ -361,12 +386,14 @@
     </section>
     <section class="contacts" id="contacts">
       <div class="container">
-        <h3 class="contacts__title title-3">Like my portfolio? Sign up for a shoot!</h3>
-        <form class="contacts__form">
-          <input type="text" class="form-input text" placeholder="Your name" required>
-          <input type="tel" class="form-input text" value="+1" required>
-          <button type="submit" class="form-btn btn">Book now</button>
-        </form>
+        <div class="contacts__wrapper">
+          <h3 class="contacts__title title-3">Like my portfolio? Sign up for a shoot!</h3>
+          <form class="contacts__form">
+            <input type="text" class="form-input" placeholder="Your name" required>
+            <input type="tel" class="form-input" value="+1" placeholder="+1" required>
+            <button type="submit" class="form-btn btn">Book now</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -374,11 +401,12 @@
     <div class="container">
       <nav class="footer__nav" aria-label="social network links and phone">
         <ul class="footer__nav_list">
-          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Instagram</a></li>
-          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Telegram</a></li>
-          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Whatsapp</a></li>
-          <li class="nav__item"><a href="#" class="nav__link" target="_blank">Europe</a></li>
-          <li class="nav__item"><a href="tel:+12349843572" class="nav__link" target="_blank">+1 234 9843572</a></li>
+          <li class="footer__nav__item"><a href="#" class="nav__link" target="_blank">Instagram</a></li>
+          <li class="footer__nav__item"><a href="#" class="nav__link" target="_blank">Telegram</a></li>
+          <li class="footer__nav__item"><a href="#" class="nav__link" target="_blank">Whatsapp</a></li>
+          <li class="footer__nav__item"><a href="#" class="nav__link" target="_blank">Europe</a></li>
+          <li class="footer__nav__item"><a href="tel:+12349843572" class="nav__link" target="_blank">+1 234
+              9843572</a></li>
         </ul>
       </nav>
     </div>

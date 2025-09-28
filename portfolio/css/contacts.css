@@ -1,10 +1,12 @@
 .contacts {
   padding: 2.5rem 0 1.25rem;
 }
-
+.contacts__wrapper {
+  padding: 0 1.25rem;
+}
 .contacts__title {
   text-align: center;
-  margin-bottom: 1.125rem;
+  margin-bottom: 1.25rem;
 }
 .contacts__form {
   display: flex;
@@ -18,10 +20,29 @@
 .form-input {
   height: 60px;
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem;
   border: 1px solid var(--color-primary);
   text-transform: uppercase;
+  outline: none;
+  transition: var(--transition);
+
+  font-family: var(--font-family-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.form-input:hover {
+  border: 1px solid var(--color-accent);
 }
 .form-btn {
   max-width: 200px;
+}
+
+@media screen and (max-width: 580px) {
+  .contacts__form {
+    flex-wrap: wrap;
+  }
+  .form-btn {
+    max-width: 100%;
+  }
 }

@@ -74,3 +74,15 @@
 .faq__item.active .faq__question:before {
   transform: rotate(0deg);
 }
+
+.faq__item.active .faq__question {
+  pointer-events: none;
+}
+
+@media screen and (max-width: 870px) {
+  .faq__wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+    gap: 2.5rem;
+  }
+}

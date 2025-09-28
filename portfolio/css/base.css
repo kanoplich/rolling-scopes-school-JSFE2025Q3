@@ -12,7 +12,7 @@ html {
   font-family: var(--font-family-secondary);
   font-size: 7.25rem;
   font-weight: 300;
-  line-height: 1.125;
+  line-height: 1.14;
   text-transform: uppercase;
   color: var(--color-secondary);
 }
@@ -30,7 +30,7 @@ html {
   font-family: var(--font-family-secondary);
   font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
@@ -57,35 +57,29 @@ html {
   line-height: 1.25;
 }
 
-.btn__scroll {
-  position: relative;
-  font-family: var(--font-family-primary);
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.nav__item {
+  padding: 0 1.25rem;
+}
+
+.nav__link {
+  font-family: var(--font-family-secondary);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  text-transform: uppercase;
   color: var(--color-secondary);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   transition: var(--transition);
 }
 
-.btn__scroll::after {
-  content: '';
-  width: 24px;
-  height: 24px;
-  background-image: url('../assets/icons/arrow-down_white.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: var(--transition);
-}
-
-.btn__scroll:hover {
+.nav__link:hover {
   color: var(--color-accent);
-}
-
-.btn__scroll:hover::after {
-  background-image: url('../assets/icons/arrow-down_red.svg');
 }
 
 .btn {
@@ -110,13 +104,19 @@ html {
 @media screen and (max-width: 1170px) {
   .title-1 {
     font-size: 4.25rem;
+    line-height: 1.17;
   }
 }
 
-.hidden {
-  display: none;
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
 }
 
-.visible {
-  display: block;
+@media screen and (max-width: 480px) {
+  .title-1 {
+    font-size: 3.5rem;
+    line-height: 1.14;
+  }
 }

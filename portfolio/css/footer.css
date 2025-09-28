@@ -1,5 +1,5 @@
 .footer {
-  padding: 2.5rem 0;
+  padding: 1.25rem 0;
   width: 100%;
   background-color: var(--color-primary);
 }
@@ -8,4 +8,12 @@
   justify-content: center;
   align-items: center;
   transition: var(--transition);
+}
+.footer__nav__item {
+  padding: 1.125rem 1.25rem;
+}
+@media screen and (max-width: 580px) {
+  .footer__nav_list {
+    flex-direction: column;
+  }
 }

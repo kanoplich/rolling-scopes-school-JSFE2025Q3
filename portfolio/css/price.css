@@ -9,6 +9,7 @@
 .price__card_wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
   gap: 2.5rem;
   margin-top: 2.5rem;
   min-height: 500px;
@@ -67,4 +68,20 @@
 
 .card__text {
   margin-bottom: 0.75rem;
+}
+
+@media screen and (max-width: 1180px) {
+  .price__card_wrapper {
+    grid-template-columns: repeat(2, minmax(auto, 320px));
+    grid-template-rows: repeat(2, minmax(500px, auto));
+    gap: 1.25rem;
+    margin: 2.5rem 0.625rem 0;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .price__card_wrapper {
+    grid-template-columns: minmax(auto, 320px);
+    grid-template-rows: repeat(4, minmax(500px, auto));
+  }
 }
