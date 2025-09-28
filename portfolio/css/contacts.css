@@ -31,11 +31,15 @@
   font-weight: 400;
   line-height: 1.5;
 }
-.form-input:hover {
-  border: 1px solid var(--color-accent);
-}
+
 .form-btn {
   max-width: 200px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .form-input:hover {
+    border: 1px solid var(--color-accent);
+  }
 }
 
 @media screen and (max-width: 580px) {

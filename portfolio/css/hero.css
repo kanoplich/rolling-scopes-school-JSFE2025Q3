@@ -148,12 +148,14 @@
   transition: var(--transition);
 }
 
-.btn__scroll:hover {
-  color: var(--color-accent);
-}
+@media (hover: hover) and (pointer: fine) {
+  .btn__scroll:hover {
+    color: var(--color-accent);
+  }
 
-.btn__scroll:hover::after {
-  background-color: var(--color-accent);
+  .btn__scroll:hover::after {
+    background-color: var(--color-accent);
+  }
 }
 
 @media screen and (max-width: 1280px) {

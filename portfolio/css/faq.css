@@ -34,13 +34,15 @@
   transition: var(--transition);
 }
 
-.faq__question:hover {
-  color: var(--color-accent);
-}
+@media (hover: hover) and (pointer: fine) {
+  .faq__question:hover {
+    color: var(--color-accent);
+  }
 
-.faq__question:hover:after,
-.faq__question:hover:before {
-  background-color: var(--color-accent);
+  .faq__question:hover:after,
+  .faq__question:hover:before {
+    background-color: var(--color-accent);
+  }
 }
 
 .faq__question:before,

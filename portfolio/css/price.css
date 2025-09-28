@@ -25,13 +25,15 @@
   transition: var(--transition);
 }
 
-.price__card:hover {
-  border: 1px solid var(--color-accent);
-}
+@media (hover: hover) and (pointer: fine) {
+  .price__card:hover {
+    border: 1px solid var(--color-accent);
+  }
 
-.price__card:hover .card__btn {
-  background-color: var(--color-accent);
-  color: var(--color-primary);
+  .price__card:hover .card__btn {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+  }
 }
 
 .card__title {
