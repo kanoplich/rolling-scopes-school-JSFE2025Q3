@@ -18,15 +18,27 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <div class="header__logo">
+        <div class="header__logo" id="logo">
           <a class="logo" href="#">
             <img src="./assets/image/logo.png" alt="Portfolio" loading="lazy">
           </a>
         </div>
-        <button class="burger">
+
+        <nav class="mobile__nav" aria-label="main menu">
+          <ul class="mobile__list" id="mobile-menu">
+            <li class="mobile__nav__item"><a href="#about" class="mobile__nav__link">About me</a></li>
+            <li class="mobile__nav__item"><a href="#portfolio" class="mobile__nav__link">Portfolio</a></li>
+            <li class="mobile__nav__item"><a href="#price" class="mobile__nav__link">Price</a></li>
+            <li class="mobile__nav__item"><a href="#faq" class="mobile__nav__link">FAQ</a></li>
+            <li class="mobile__nav__item"><a href="#contacts" class="mobile__nav__link">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <button class="burger" id="burger">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
         </button>
+
         <nav class="header__nav" aria-label="main menu">
           <ul class="nav__list">
             <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
