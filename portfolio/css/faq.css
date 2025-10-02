@@ -70,15 +70,11 @@
 
 .faq__item.active .faq__answer {
   padding-bottom: 1.25rem;
-  max-height: 200px;
+  max-height: 500px;
 }
 
 .faq__item.active .faq__question:before {
   transform: rotate(0deg);
-}
-
-.faq__item.active .faq__question {
-  pointer-events: none;
 }
 
 @media screen and (max-width: 870px) {

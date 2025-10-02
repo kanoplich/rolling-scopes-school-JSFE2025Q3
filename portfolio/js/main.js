@@ -55,12 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
     item.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
 
-      if (isActive) {
-        return;
-      }
-
       closeAllAccordions();
-      openAccordion(index);
+
+      if (!isActive) {
+        openAccordion(index);
+      }
     });
   });
 
@@ -71,4 +70,31 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     openAccordion(0);
   }
+});
+
+// Modal
+
+const cardBtns = document.querySelectorAll('.card__btn');
+const modalOverlay = document.querySelector('#modal-overlay');
+const modalCloseBtn = document.querySelector('#btn-closed');
+const modal = document.querySelector('#modal');
+
+cardBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    modal.classList.remove('modal-closed');
+    modalOverlay.classList.remove('modal-closed');
+    body.classList.add('modal-open');
+  });
+});
+
+modalCloseBtn.addEventListener('click', () => {
+  modal.classList.add('modal-closed');
+  modalOverlay.classList.add('modal-closed');
+  body.classList.remove('modal-open');
+});
+
+modalOverlay.addEventListener('click', () => {
+  modal.classList.add('modal-closed');
+  modalOverlay.classList.add('modal-closed');
+  body.classList.remove('modal-open');
 });
