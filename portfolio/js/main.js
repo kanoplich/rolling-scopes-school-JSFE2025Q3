@@ -32,6 +32,68 @@ links.forEach((link) => {
 
 // Slider
 
+const slider = document.querySelector('#slider');
+const leftZone = document.querySelector('#left-zone');
+const rightZone = document.querySelector('#right-zone');
+const container = document.querySelector('#container');
+
+let animationFrameId = null;
+let currentLeft;
+let currentSpeed;
+let maxLeft = 20;
+let minLeft;
+
+function initSlider() {
+  currentLeft = (container.clientWidth - slider.scrollWidth) / 2;
+  minLeft = container.clientWidth - slider.scrollWidth - 20;
+  slider.style.transform = `translateX(${currentLeft}px)`;
+}
+
+function startSliding(direction) {
+  stopSliding();
+  currentSpeed = direction === 'left' ? -5 : 5;
+  animateSlider();
+}
+
+function stopSliding() {
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
+}
+
+function animateSlider() {
+  currentLeft += currentSpeed;
+
+  if (currentLeft <= minLeft) {
+    currentLeft = minLeft;
+    stopSliding();
+  }
+  if (currentLeft >= maxLeft) {
+    currentLeft = maxLeft;
+    stopSliding();
+  }
+
+  slider.style.transform = `translateX(${currentLeft}px)`;
+  animationFrameId = requestAnimationFrame(() => animateSlider());
+}
+
+let resizeTimeout;
+
+function handlerResize() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(initSlider, 300);
+}
+
+window.addEventListener('load', initSlider);
+window.addEventListener('resize', handlerResize);
+
+leftZone.addEventListener('mouseenter', () => startSliding('left'));
+rightZone.addEventListener('mouseenter', () => startSliding('right'));
+
+leftZone.addEventListener('mouseleave', stopSliding);
+rightZone.addEventListener('mouseleave', stopSliding);
+
 // Accordions
 
 document.addEventListener('DOMContentLoaded', function () {
