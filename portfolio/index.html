@@ -18,15 +18,27 @@
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
-        <div class="header__logo">
+        <div class="header__logo" id="logo">
           <a class="logo" href="#">
             <img src="./assets/image/logo.png" alt="Portfolio" loading="lazy">
           </a>
         </div>
-        <button class="burger">
+
+        <nav class="mobile__nav" aria-label="main menu">
+          <ul class="mobile__list" id="mobile-menu">
+            <li class="mobile__nav__item"><a href="#about" class="mobile__nav__link">About me</a></li>
+            <li class="mobile__nav__item"><a href="#portfolio" class="mobile__nav__link">Portfolio</a></li>
+            <li class="mobile__nav__item"><a href="#price" class="mobile__nav__link">Price</a></li>
+            <li class="mobile__nav__item"><a href="#faq" class="mobile__nav__link">FAQ</a></li>
+            <li class="mobile__nav__item"><a href="#contacts" class="mobile__nav__link">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <button class="burger" id="burger">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
         </button>
+
         <nav class="header__nav" aria-label="main menu">
           <ul class="nav__list">
             <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
@@ -113,17 +125,16 @@
       </div>
     </section>
     <section class="portfolio" id="portfolio">
-      <div class="container">
+      <div class="container" id="container">
         <div class="portfolio__wrapper">
           <h2 class="portfolio__title title-2">My portfolio</h2>
           <p class="portfolio__text text">Every shoot is a story. Here you’ll find portraits, love stories, family
             sessions, and more.</p>
         </div>
         <div class="portfolio__slider">
-          <div class="area left" id="areaLeft"></div>
-          <div class="area middle"></div>
-          <div class="area right" id="areaRight"></div>
-          <div class="slider" id="slider">
+          <div class="left-zone" id="left-zone"></div>
+          <div class="right-zone" id="right-zone"></div>
+          <div class="slider__wrapper" id="slider">
             <div class="slide slide--large slide--end">
               <picture>
                 <source srcset="./assets/image/webp/img-14.webp" type="image/webp">
@@ -287,7 +298,7 @@
             <p class="faq__text text">Everything You Wanted to Ask (and a Bit More)</p>
           </div>
           <div class="faq__list">
-            <div class="faq__item active">
+            <div class="faq__item">
               <div class="faq__question">
                 <h3 class="title-3">How do I book a shoot?</h3>
               </div>
@@ -411,6 +422,20 @@
       </nav>
     </div>
   </footer>
+
+  <div class="modal modal-closed" id="modal">
+    <div class="modal__wrapper">
+      <button class="btn-closed" id="btn-closed"></button>
+      <h3 class="modal__title title-3">Like my portfolio? Sign up for a shoot!</h3>
+      <form class="modal__form">
+        <input type="text" class="form-input" placeholder="Your name" required>
+        <input type="tel" class="form-input" value="+1" placeholder="+1" required>
+        <button type="submit" class="modal-btn btn">Book now</button>
+      </form>
+    </div>
+  </div>
+  <div class="modal-overlay modal-closed" id="modal-overlay"></div>
+
 </body>
 
 </html>
