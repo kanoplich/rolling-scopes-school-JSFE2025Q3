@@ -21,7 +21,6 @@
   height: 654px;
   width: 100%;
   position: relative;
-  overflow: visible;
 }
 
 .slider__wrapper {
@@ -91,5 +90,21 @@
   .left-zone,
   .right-zone {
     display: none;
+  }
+
+  .portfolio__slider {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .portfolio__slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slider__wrapper {
+    left: 0 !important;
+    transform: translateX(0) !important;
   }
 }
