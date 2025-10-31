@@ -1,0 +1,65 @@
+body {
+  background-color: #16213e;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  width: calc(100% - 20px);
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  position: relative;
+  color: #ffffff;
+  font-size: clamp(2rem, 1.6415rem + 1.5094vw, 3rem);
+}
+
+.title-icon {
+  background-image: url('./icons/music-drums.svg');
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+}
+
+.drum-kit {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2.5rem auto;
+  max-width: 600px;
+}
+
+.pad {
+  background: linear-gradient(145deg, #2d2d44, #3a3a5a);
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+    -2px -2px 10px rgba(255, 255, 255, 0.05);
+  border: 2px solid #4a4a6a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  transition: all 0.1s ease;
+}
+
+.pad:hover {
+  background: linear-gradient(145deg, #3a3a5a, #47476b);
+  transform: translateY(-2px);
+}
+
+.pad:active,
+.pad.active {
+  background: linear-gradient(145deg, #00b894, #00a085);
+  transform: scale(0.95);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
