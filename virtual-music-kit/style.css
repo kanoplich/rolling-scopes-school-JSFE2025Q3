@@ -23,7 +23,7 @@ body {
 }
 
 .title-icon {
-  background-image: url('./icons/music-drums.svg');
+  background-image: url('./assets/icons/music-drums.svg');
   background-repeat: no-repeat;
   width: 60px;
   height: 60px;
@@ -40,6 +40,7 @@ body {
 .pad {
   background: linear-gradient(145deg, #2d2d44, #3a3a5a);
   border-radius: 15px;
+  padding: 15px 5px;
   cursor: pointer;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
     -2px -2px 10px rgba(255, 255, 255, 0.05);
@@ -48,7 +49,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 120px;
   transition: all 0.1s ease;
 }
 
@@ -62,4 +62,17 @@ body {
   background: linear-gradient(145deg, #00b894, #00a085);
   transform: scale(0.95);
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.pad-key {
+  color: #00b894;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.pad-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
 }
