@@ -129,9 +129,10 @@ let isEdit = false;
 let isInput = false;
 let isPlaySong = false;
 let isKeyActive = false;
+let activePad = null;
 let keyCodeActive = '';
 
-drumKit.addEventListener('click', (event) => {
+drumKit.addEventListener('mousedown', (event) => {
   const pad = event.target.closest('.pad');
   const edit = event.target.closest('.pad-icon');
 
@@ -139,6 +140,7 @@ drumKit.addEventListener('click', (event) => {
 
   if (edit && !isPlaySong) {
     editKey(pad);
+    return;
   }
 
   if (!pad || isEdit || isInput || isPlaySong) return;
@@ -146,9 +148,14 @@ drumKit.addEventListener('click', (event) => {
   const soundName = pad.dataset.sound;
   playSound(soundName);
 
-  if (pad) {
-    pad.classList.add('active');
-    setTimeout(() => pad.classList.remove('active'), 150);
+  pad.classList.add('active');
+  activePad = pad;
+});
+
+document.addEventListener('mouseup', () => {
+  if (activePad) {
+    activePad.classList.remove('active');
+    activePad = null;
   }
 });
 
@@ -163,14 +170,18 @@ document.addEventListener('keydown', (event) => {
     playSound(soundName);
 
     const pad = document.querySelector(`.pad[data-key="${key}"]`);
-    if (pad) {
-      pad.classList.add('active');
-      setTimeout(() => pad.classList.remove('active'), 150);
-    }
+
+    pad.classList.add('active');
+    activePad = pad;
   }
 });
 
 document.addEventListener('keyup', (event) => {
+  if (activePad && event.code === keyCodeActive) {
+    activePad.classList.remove('active');
+    activePad = null;
+  }
+
   if (event.code === keyCodeActive) {
     isKeyActive = false;
     keyCodeActive = '';
