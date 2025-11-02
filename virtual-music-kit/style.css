@@ -23,8 +23,11 @@ body {
 }
 
 .title-icon {
-  background-image: url('./assets/icons/music-drums.svg');
-  background-repeat: no-repeat;
+  background-color: #4a4a6a;
+  mask-image: url('./assets/icons/music-drums.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
   width: 60px;
   height: 60px;
 }
@@ -134,4 +137,78 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.play-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.play-btn {
+  position: relative;
+  cursor: pointer;
+  padding: 5px 15px;
+  font-size: 1.5rem;
+  border: 2px solid #4a4a6a;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+    -2px -2px 10px rgba(255, 255, 255, 0.05);
+  background: linear-gradient(145deg, #2d2d44, #3a3a5a);
+  border-radius: 6px;
+  color: #ffffff;
+
+  width: 70px;
+  height: 35px;
+}
+
+.play-btn:before {
+  content: '';
+  position: absolute;
+  background-image: url('./assets/icons/play.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+}
+
+.play-btn:hover {
+  background: linear-gradient(145deg, #3a3a5a, #47476b);
+  transform: translateY(-2px);
+}
+
+.play-btn:active {
+  background: linear-gradient(145deg, #00b894, #00a085);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:disabled,
+.play-input:disabled {
+  cursor: not-allowed;
+  transform: none;
+  background: rgb(151, 151, 151);
+  border-color: rgb(151, 151, 151);
+}
+
+.play-btn:disabled:hover {
+  transform: none;
+}
+
+.play-input {
+  width: 100%;
+  max-width: 500px;
+  height: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #263e80;
+  border: 2px solid #00b894;
+  border-radius: 6px;
+  background: #00b894;
+  outline: none;
+  text-transform: uppercase;
+  box-sizing: border-box;
 }

@@ -13,6 +13,35 @@ const drumKitData = {
   L: { sound: 'low-tom', name: 'Low Tom' },
 };
 
+const keyCodeData = {
+  KeyA: 'A',
+  KeyB: 'B',
+  KeyC: 'C',
+  KeyD: 'D',
+  KeyE: 'E',
+  KeyF: 'F',
+  KeyG: 'G',
+  KeyH: 'H',
+  KeyI: 'I',
+  KeyJ: 'J',
+  KeyK: 'K',
+  KeyL: 'L',
+  KeyM: 'M',
+  KeyN: 'N',
+  KeyO: 'O',
+  KeyP: 'P',
+  KeyQ: 'Q',
+  KeyR: 'R',
+  KeyS: 'S',
+  KeyT: 'T',
+  KeyU: 'U',
+  KeyV: 'V',
+  KeyW: 'W',
+  KeyX: 'X',
+  KeyY: 'Y',
+  KeyZ: 'Z',
+};
+
 async function loadSounds() {
   try {
     for (let key in drumKitData) {
@@ -72,6 +101,16 @@ container.append(keyError);
 const drumKit = createElement('div', 'drum-kit');
 container.append(drumKit);
 
+const playWrapper = createElement('div', 'play-wrapper', '');
+const btnPlay = createElement('button', 'play-btn', '');
+btnPlay.disabled = true;
+const inputPlay = createElement('input', 'play-input');
+inputPlay.type = 'text';
+inputPlay.maxLength = Object.entries(drumKitData).length * 2;
+container.append(playWrapper);
+playWrapper.append(btnPlay);
+playWrapper.append(inputPlay);
+
 for (let key in drumKitData) {
   const pad = createElement('div', 'pad');
   const padKey = createElement('div', 'pad-key', `${key}`);
@@ -87,6 +126,10 @@ for (let key in drumKitData) {
 }
 
 let isEdit = false;
+let isInput = false;
+let isPlaySong = false;
+let isKeyActive = false;
+let keyCodeActive = '';
 
 drumKit.addEventListener('click', (event) => {
   const pad = event.target.closest('.pad');
@@ -94,11 +137,11 @@ drumKit.addEventListener('click', (event) => {
 
   if (edit && isEdit) return;
 
-  if (edit) {
+  if (edit && !isPlaySong) {
     editKey(pad);
   }
 
-  if (!pad || isEdit) return;
+  if (!pad || isEdit || isInput || isPlaySong) return;
 
   const soundName = pad.dataset.sound;
   playSound(soundName);
@@ -110,11 +153,12 @@ drumKit.addEventListener('click', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-  console.log(event.code);
-  const key = event.key.toUpperCase();
-  if (event.repeat || isEdit) return;
+  const key = keyCodeData[event.code];
+  if (event.repeat || isEdit || isInput || isPlaySong || isKeyActive) return;
 
   if (drumKitData[key]) {
+    isKeyActive = true;
+    keyCodeActive = event.code;
     const soundName = drumKitData[key].sound;
     playSound(soundName);
 
@@ -126,9 +170,86 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+document.addEventListener('keyup', (event) => {
+  if (event.code === keyCodeActive) {
+    isKeyActive = false;
+    keyCodeActive = '';
+  }
+});
+
+inputPlay.addEventListener('focus', () => {
+  isInput = true;
+});
+
+inputPlay.addEventListener('blur', () => {
+  isInput = false;
+});
+
+inputPlay.addEventListener('input', () => {
+  if (inputPlay.value.length > 0) {
+    btnPlay.disabled = false;
+  } else {
+    btnPlay.disabled = true;
+  }
+});
+
+inputPlay.addEventListener('keydown', (event) => {
+  const inputKey = event.key.toUpperCase();
+
+  if (
+    event.key === 'Backspace' ||
+    event.key === 'Delete' ||
+    event.key === 'ArrowLeft' ||
+    event.key === 'ArrowRight'
+  ) {
+    return;
+  }
+
+  if (!drumKitData[inputKey] || isEdit) {
+    event.preventDefault();
+  }
+});
+
+btnPlay.addEventListener('click', () => {
+  const songArr = inputPlay.value.toUpperCase().split('');
+
+  if (songArr.length === 0) {
+    isPlaySong = false;
+    return;
+  }
+
+  if (!isPlaySong && !isEdit) {
+    isPlaySong = true;
+    btnPlay.disabled = true;
+    inputPlay.disabled = true;
+
+    songArr.forEach((key, index) => {
+      setTimeout(() => {
+        let soundName = drumKitData[key].sound;
+
+        playSound(soundName);
+
+        const pad = document.querySelector(`.pad[data-key="${key}"]`);
+        if (pad) {
+          pad.classList.add('active');
+          setTimeout(() => pad.classList.remove('active'), 150);
+        }
+
+        if (index === songArr.length - 1) {
+          isPlaySong = false;
+          btnPlay.disabled = false;
+          inputPlay.disabled = false;
+        }
+      }, index * 300);
+    });
+  }
+});
+
 function editKey(pad) {
   isEdit = true;
 
+  inputPlay.value = '';
+  btnPlay.disabled = true;
   const padKeyElement = pad.querySelector('.pad-key');
   const currentKey = pad.dataset.key;
 
