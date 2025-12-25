@@ -1,8 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# validate branch name before commit
-
 npx eslint
-
 npx validate-branch-name
