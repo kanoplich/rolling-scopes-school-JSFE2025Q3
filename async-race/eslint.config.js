@@ -16,6 +16,15 @@ export default defineConfig([
   {
     rules: {
       'unicorn/better-regex': 'warn',
+      'unicorn/filename-case': [
+        'error',
+        {
+          cases: {
+            camelCase: true,
+            pascalCase: true,
+          },
+        },
+      ],
     },
   },
   tseslint.configs.recommended,
