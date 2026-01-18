@@ -33,6 +33,7 @@ class Form extends Component {
   render() {
     const createGroup = this.createFormGroup('create-text', 'create-color', 'btn-create', 'create');
     const updateGroup = this.createFormGroup('update-text', 'update-color', 'btn-update', 'update');
+    const buttonGroup = this.createElement('div', 'form-group');
 
     const raceButton = new Button('btn-race', 'race');
     const raceButtonHTML = raceButton.render();
@@ -42,8 +43,6 @@ class Form extends Component {
 
     const generateButton = new Button('btn-generate', 'generate cars');
     const generateButtonHTML = generateButton.render();
-
-    const buttonGroup = this.createElement('div', 'form-group');
 
     buttonGroup.append(raceButtonHTML, resetButtonHTML, generateButtonHTML);
     this.element.append(createGroup, updateGroup, buttonGroup);
