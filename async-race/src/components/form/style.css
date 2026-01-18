@@ -1,0 +1,14 @@
+.form {
+  padding: 0 1.25rem;
+  max-width: 380px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+  gap: 0.25rem;
+}
