@@ -6,12 +6,12 @@ class Navigate extends Component {
     {
       id: 'garage',
       title: 'garage',
-      href: '/garage',
+      href: '#garage',
     },
     {
       id: 'winners',
       title: 'winners',
-      href: '/winners',
+      href: '#winners',
     },
   ];
 

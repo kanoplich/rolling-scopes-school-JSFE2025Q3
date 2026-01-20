@@ -1,8 +1,9 @@
 import Component from '../../core/Component';
 
 class WinnersPage extends Component {
-  constructor() {
+  constructor(id: string) {
     super('main', 'main');
+    this.element.setAttribute('id', id);
   }
 
   render() {

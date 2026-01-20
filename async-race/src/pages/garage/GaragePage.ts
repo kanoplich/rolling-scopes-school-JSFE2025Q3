@@ -9,8 +9,9 @@ class GaragePage extends Component {
   private readonly card: Card;
   private readonly paginate: Paginate;
 
-  constructor() {
+  constructor(id: string) {
     super('main', 'main');
+    this.element.setAttribute('id', id);
     this.form = new Form();
     this.card = new Card();
     this.paginate = new Paginate();
