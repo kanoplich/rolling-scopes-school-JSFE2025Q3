@@ -24,6 +24,7 @@
 
 .car-img {
   height: 4rem;
+  z-index: -1;
 }
 
 .flag-img {

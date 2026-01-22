@@ -44,9 +44,19 @@ class App {
     });
   }
 
+  private initialPage() {
+    const initialHash = globalThis.location.hash.slice(1);
+
+    if (initialHash) {
+      App.renderPage(initialHash);
+    } else {
+      App.element.append(this.garagePage.render());
+    }
+  }
+
   run() {
     App.element.append(this.header.render());
-    App.element.append(this.garagePage.render());
+    this.initialPage();
     this.enableChangeRoute();
   }
 }

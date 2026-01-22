@@ -1,0 +1,12 @@
+.winners-table {
+  padding: 1.25rem;
+}
+
+.table-header {
+  background-color: blue;
+  color: #ffffff;
+}
+
+.th {
+  padding: 0.5rem;
+}
