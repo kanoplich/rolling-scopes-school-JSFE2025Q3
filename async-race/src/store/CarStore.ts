@@ -1,5 +1,13 @@
 import type { Car } from '../types/type';
-import { createCar, deleteCar, getCars, updateCar } from '../utils/api';
+import {
+  createCar,
+  deleteCar,
+  drive,
+  getCars,
+  startEngine,
+  stopEngine,
+  updateCar,
+} from '../utils/api';
 
 class CarStore {
   private static instance: CarStore;
@@ -108,6 +116,33 @@ class CarStore {
   setSelectedCar(car: Car, isSelected: boolean) {
     this.selectedCar = car;
     this.isSelected = isSelected;
+  }
+
+  async startEngine(id: number) {
+    try {
+      const engine = await startEngine(id);
+      return engine;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async stopEngine(id: number) {
+    try {
+      const response = await stopEngine(id);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async drive(id: number) {
+    try {
+      const engine = await drive(id);
+      return engine;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

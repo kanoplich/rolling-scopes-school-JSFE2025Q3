@@ -1,6 +1,7 @@
 import Component from '../../core/Component';
 import { carStore } from '../../store/CarStore';
 import type { Car } from '../../types/type';
+import { animationStart, animationStop, resetAnimation } from '../../utils/animation';
 import createCarImage from '../../utils/createCarImage';
 import createFlagImage from '../../utils/createFlagImage';
 import './style.css';
@@ -29,11 +30,11 @@ class Card extends Component {
         break;
       }
       case 'card-start': {
-        this.handleStart();
+        this.handleStart(button);
         break;
       }
       case 'card-stop': {
-        this.handleStop();
+        this.handleStop(button);
         break;
       }
     }
@@ -70,9 +71,46 @@ class Card extends Component {
     buttonUpdate.disabled = false;
   }
 
-  private async handleStart() {}
+  private async handleStart(button: HTMLButtonElement) {
+    const id = button.dataset.id;
+    button.disabled = true;
 
-  private async handleStop() {}
+    const stopButton = button.nextElementSibling as HTMLButtonElement;
+    stopButton.disabled = false;
+
+    if (!id) {
+      return;
+    }
+
+    const engine = await carStore.startEngine(+id);
+    if (!engine) {
+      return;
+    }
+    const time = Math.round(engine.distance / engine.velocity);
+    const carImage = document.querySelector(`.car-img[data-id="${id}"]`) as HTMLElement;
+
+    animationStart(carImage, time);
+    const response = await carStore.drive(+id);
+    if (response.status !== 200) {
+      animationStop(carImage);
+    }
+  }
+
+  private async handleStop(button: HTMLButtonElement) {
+    const id = button.dataset.id;
+    button.disabled = true;
+
+    const startButton = button.previousElementSibling as HTMLButtonElement;
+    startButton.disabled = false;
+
+    if (!id) {
+      return;
+    }
+
+    const carImage = document.querySelector(`.car-img[data-id="${id}"]`) as HTMLElement;
+    await carStore.stopEngine(+id);
+    resetAnimation(carImage);
+  }
 
   private createCard(car: Car) {
     const card = this.createElement('div', 'card');
@@ -85,9 +123,12 @@ class Card extends Component {
     removeCar.dataset.id = `${car.id}`;
     const carName = this.createElement('span', 'card-title', car.name);
     const startButton = this.createElement('button', 'card-start', 'A');
+    startButton.dataset.id = `${car.id}`;
     const stopButton = this.createElement('button', 'card-stop', 'B') as HTMLButtonElement;
+    stopButton.dataset.id = `${car.id}`;
     stopButton.disabled = true;
     const carImage = this.createElement('div', 'car-img');
+    carImage.dataset.id = `${car.id}`;
     const flagImage = this.createElement('div', 'flag-img');
     const line = this.createElement('div', 'card-line');
     carImage.innerHTML = `${createCarImage(car.color)}`;

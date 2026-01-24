@@ -1,4 +1,4 @@
-import type { Car } from '../types/type';
+import type { Car, Engine } from '../types/type';
 
 const URL = 'http://127.0.0.1:3000';
 
@@ -52,4 +52,31 @@ export const deleteCar = async (id: number) => {
   });
 
   return await response.json();
+};
+
+export const startEngine = async (id: number) => {
+  const response = await fetch(`${URL}/engine?id=${id}&status=started`, {
+    method: 'PATCH',
+  });
+
+  const engine: Engine = await response.json();
+
+  return engine;
+};
+
+export const stopEngine = async (id: number) => {
+  const response = await fetch(`${URL}/engine?id=${id}&status=stopped`, {
+    method: 'PATCH',
+  });
+
+  const engine: Engine = await response.json();
+
+  return engine;
+};
+
+export const drive = async (id: number) => {
+  const response = await fetch(`${URL}/engine/?id=${id}&status=drive`, {
+    method: 'PATCH',
+  }).catch();
+  return response.status === 200 ? { ...(await response.json()) } : { success: false };
 };

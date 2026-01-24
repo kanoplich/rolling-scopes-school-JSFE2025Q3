@@ -1,5 +1,6 @@
 import Component from '../../core/Component';
 import { carStore } from '../../store/CarStore';
+import { animationStart, animationStop, resetAnimation } from '../../utils/animation';
 import { generateCarColor, generateCarName } from '../../utils/generateCarData';
 import Button from '../button/Button';
 import Input from '../input/Input';
@@ -29,11 +30,11 @@ class Form extends Component {
         break;
       }
       case 'btn-race': {
-        this.handleRace();
+        this.handleRace(button);
         break;
       }
       case 'btn-reset': {
-        this.handleReset();
+        this.handleReset(button);
         break;
       }
       case 'btn-generate': {
@@ -77,9 +78,44 @@ class Form extends Component {
     }
   }
 
-  private handleRace() {}
+  private async handleRace(button: HTMLButtonElement) {
+    button.disabled = true;
+    const cars = carStore.getCars();
+    const response = await Promise.all(cars.map((car) => carStore.startEngine(car.id)));
+    const resetButton = this.element.querySelector('#btn-reset') as HTMLButtonElement;
+    resetButton.disabled = false;
 
-  private handleReset() {}
+    for (const [index, data] of response.entries()) {
+      if (!data) {
+        return;
+      }
+      const id = cars[index].id;
+      const time = Math.round(data.distance / data.velocity);
+      const carImage = document.querySelector(`.car-img[data-id="${id}"]`) as HTMLElement;
+
+      animationStart(carImage, time);
+      carStore.drive(id).then((response) => {
+        if (response.status !== 200) {
+          animationStop(carImage);
+        }
+      });
+    }
+  }
+
+  private async handleReset(button: HTMLButtonElement) {
+    const cars = carStore.getCars();
+
+    for (const car of cars) {
+      const carImage = document.querySelector(`.car-img[data-id="${car.id}"]`) as HTMLElement;
+      carStore.stopEngine(car.id).then(() => {
+        resetAnimation(carImage);
+      });
+    }
+
+    button.disabled = true;
+    const raceButton = this.element.querySelector('#btn-race') as HTMLButtonElement;
+    raceButton.disabled = false;
+  }
 
   private async handleGenerate(button: HTMLButtonElement) {
     button.disabled = true;
@@ -139,7 +175,8 @@ class Form extends Component {
     const raceButtonHTML = raceButton.render();
 
     const resetButton = new Button('btn-reset', 'reset');
-    const resetButtonHTML = resetButton.render();
+    const resetButtonHTML = resetButton.render() as HTMLButtonElement;
+    resetButtonHTML.disabled = true;
 
     const generateButton = new Button('btn-generate', 'generate cars');
     const generateButtonHTML = generateButton.render();

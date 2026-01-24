@@ -5,3 +5,8 @@ export type Car = {
 };
 
 export type Cars = Array<Car>;
+
+export type Engine = {
+  velocity: number;
+  distance: number;
+};
