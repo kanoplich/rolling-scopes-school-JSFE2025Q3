@@ -1,4 +1,5 @@
 import Header from '../../components/header/Header';
+import { carStore } from '../../store/CarStore';
 import GaragePage from '../garage/GaragePage';
 import WinnersPage from '../winners/WinnersPage';
 
@@ -54,9 +55,15 @@ class App {
     }
   }
 
-  run() {
-    App.element.append(this.header.render());
+  async mounted() {
+    await carStore.loadCars();
+
     this.initialPage();
+  }
+
+  run() {
+    this.mounted();
+    App.element.append(this.header.render());
     this.enableChangeRoute();
   }
 }

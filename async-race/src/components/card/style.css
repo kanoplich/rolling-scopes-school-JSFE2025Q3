@@ -2,6 +2,10 @@
   padding: 0.5rem 1.25rem;
 }
 
+.card {
+  margin-bottom: 1rem;
+}
+
 .card-header,
 .card-item {
   display: flex;

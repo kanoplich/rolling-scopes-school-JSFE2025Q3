@@ -9,6 +9,10 @@ class Input extends Component {
     this.element.setAttribute('id', id);
   }
 
+  setValue(value: string) {
+    this.element.setAttribute('value', value);
+  }
+
   render() {
     return this.element;
   }
