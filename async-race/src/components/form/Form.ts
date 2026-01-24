@@ -58,14 +58,22 @@ class Form extends Component {
   }
 
   private async handleUpdate() {
-    //   const nameInput = this.element.querySelector('#update-text') as HTMLInputElement;
-    //   const colorInput = this.element.querySelector('#update-color') as HTMLInputElement;
-    //   const name = nameInput.value;
-    //   const color = colorInput.value;
-    //   if (name && color) {
-    //     await carStore.updateCar(name, color);
-    //     nameInput.value = '';
-    //   }
+    const nameInput = this.element.querySelector('#update-text') as HTMLInputElement;
+    const colorInput = this.element.querySelector('#update-color') as HTMLInputElement;
+    const button = this.element.querySelector('#btn-update') as HTMLButtonElement;
+    const { car } = carStore.getSelectedCar();
+
+    const name = nameInput.value;
+    const color = colorInput.value;
+
+    if (name && color) {
+      await carStore.updateCar(car.id, name, color);
+      await carStore.loadCars();
+      nameInput.value = '';
+      carStore.setSelectedCar(car, false);
+      button.disabled = true;
+      button.classList.add('btn-disabled');
+    }
   }
 
   private handleRace() {}
@@ -103,11 +111,15 @@ class Form extends Component {
     const inputTextHTML = inputText.render();
 
     const inputColor = new Input('color', idInputColor);
-    inputColor.setValue('#bfbfbf');
+    inputColor.setAttribute('value', '#bfbfbf');
     const inputColorHTML = inputColor.render();
 
     const button = new Button(idButton, textButton);
     const buttonHTML = button.render();
+    if (idButton === 'btn-update') {
+      button.buttonIsActive('true');
+      buttonHTML.classList.add('btn-disabled');
+    }
 
     inputGroup.append(inputTextHTML, inputColorHTML, buttonHTML);
 

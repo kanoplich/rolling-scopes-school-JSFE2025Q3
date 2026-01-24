@@ -6,6 +6,12 @@ class CarStore {
   private cars: Car[] = [];
   private totalCountCars: string = '0';
   private readonly page: number = 1;
+  private isSelected: boolean = false;
+  private selectedCar: Car = {
+    id: 0,
+    color: '',
+    name: '',
+  };
   private listeners: Array<() => void> = [];
 
   static getInstance(): CarStore {
@@ -66,6 +72,11 @@ class CarStore {
     }
   }
 
+  getCar(id: number) {
+    const car = this.cars.find((car) => car.id === id);
+    return car;
+  }
+
   getCars() {
     return [...this.cars];
   }
@@ -76,6 +87,18 @@ class CarStore {
 
   getCurrentPage() {
     return this.page;
+  }
+
+  getSelectedCar() {
+    return {
+      car: this.selectedCar,
+      isSelected: this.isSelected,
+    };
+  }
+
+  setSelectedCar(car: Car, isSelected: boolean) {
+    this.selectedCar = car;
+    this.isSelected = isSelected;
   }
 }
 

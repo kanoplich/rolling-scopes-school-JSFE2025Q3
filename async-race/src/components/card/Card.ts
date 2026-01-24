@@ -47,7 +47,21 @@ class Card extends Component {
     await carStore.loadCars();
   }
 
-  private async handleSelect(id: number) {}
+  private async handleSelect(id: number) {
+    const car = carStore.getCar(id);
+
+    const nameInput = document.querySelector('#update-text') as HTMLInputElement;
+    const colorInput = document.querySelector('#update-color') as HTMLInputElement;
+
+    if (car) {
+      nameInput.value = car.name;
+      colorInput.value = car.color;
+      carStore.setSelectedCar(car, true);
+    }
+    const button = document.querySelector('#btn-update') as HTMLButtonElement;
+    button.disabled = false;
+    button.classList.remove('btn-disabled');
+  }
 
   private async handleStart(id: number) {}
 
