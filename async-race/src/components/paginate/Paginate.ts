@@ -8,8 +8,8 @@ class Paginate extends Component {
   }
 
   render() {
-    const previous = new Button('btn', 'prev');
-    const next = new Button('btn', 'next');
+    const previous = new Button('prev', 'prev');
+    const next = new Button('next', 'next');
 
     const previousHTML = previous.render();
     const nextHTML = next.render();

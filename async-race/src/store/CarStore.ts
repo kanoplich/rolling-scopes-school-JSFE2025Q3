@@ -5,7 +5,10 @@ class CarStore {
   private static instance: CarStore;
   private cars: Car[] = [];
   private totalCountCars: string = '0';
-  private readonly page: number = 1;
+  private readonly pages = {
+    currentPage: 1,
+    totalPage: Math.ceil(+this.totalCountCars / 7),
+  };
   private isSelected: boolean = false;
   private selectedCar: Car = {
     id: 0,
@@ -34,11 +37,12 @@ class CarStore {
     }
   }
 
-  async loadCars(page: number = this.page): Promise<void> {
+  async loadCars(page: number = this.pages.currentPage): Promise<void> {
     try {
       const response = await getCars(page);
       this.cars = response.cars;
       this.totalCountCars = response.totalCountCars;
+      this.pages.totalPage = Math.ceil(+this.totalCountCars / 7);
       this.notify();
     } catch (error) {
       console.error(error);
@@ -48,7 +52,6 @@ class CarStore {
   async createCar(name: string, color: string) {
     try {
       await createCar(name, color);
-      this.notify();
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +60,6 @@ class CarStore {
   async updateCar(id: number, name: string, color: string) {
     try {
       await updateCar(id, name, color);
-      this.notify();
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +68,6 @@ class CarStore {
   async deleteCar(id: number) {
     try {
       await deleteCar(id);
-      this.notify();
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +87,15 @@ class CarStore {
   }
 
   getCurrentPage() {
-    return this.page;
+    return this.pages.currentPage;
+  }
+
+  getTotalPages() {
+    return this.pages.totalPage;
+  }
+
+  setCurrentPage(value: number) {
+    this.pages.currentPage = value;
   }
 
   getSelectedCar() {

@@ -27,3 +27,25 @@ ul li {
 body {
   background-color: black;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+  border-color: gray;
+  color: #999999;
+}
+
+input:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+  border-color: gray;
+  user-select: none;
+  pointer-events: none;
+}
+
+.paginate {
+  padding: 3rem 1.25rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

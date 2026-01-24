@@ -14,58 +14,65 @@ class Card extends Component {
   private handleClick(event: Event): void {
     const target = event.target as HTMLElement;
     const button = target.closest('button') as HTMLButtonElement;
-    const carId = button.dataset.id;
 
     if (!button) return;
 
     event.preventDefault();
 
-    if (carId) {
-      switch (button.className) {
-        case 'card-remove': {
-          this.handleRemove(+carId);
-          break;
-        }
-        case 'card-select': {
-          this.handleSelect(+carId);
-          break;
-        }
-        case 'card-start': {
-          this.handleStart(+carId);
-          break;
-        }
-        case 'card-stop': {
-          this.handleStop(+carId);
-          break;
-        }
+    switch (button.className) {
+      case 'card-remove': {
+        this.handleRemove(button);
+        break;
+      }
+      case 'card-select': {
+        this.handleSelect(button);
+        break;
+      }
+      case 'card-start': {
+        this.handleStart();
+        break;
+      }
+      case 'card-stop': {
+        this.handleStop();
+        break;
       }
     }
   }
 
-  private async handleRemove(id: number) {
-    await carStore.deleteCar(id);
-    await carStore.loadCars();
+  private async handleRemove(button: HTMLButtonElement) {
+    const id = button.dataset.id;
+    if (id) {
+      await carStore.deleteCar(+id);
+      await carStore.loadCars();
+    }
   }
 
-  private async handleSelect(id: number) {
-    const car = carStore.getCar(id);
+  private async handleSelect(button: HTMLButtonElement) {
+    const id = button.dataset.id;
+
+    if (!id) {
+      return;
+    }
+    const car = carStore.getCar(+id);
 
     const nameInput = document.querySelector('#update-text') as HTMLInputElement;
     const colorInput = document.querySelector('#update-color') as HTMLInputElement;
+
+    nameInput.disabled = false;
+    colorInput.disabled = false;
 
     if (car) {
       nameInput.value = car.name;
       colorInput.value = car.color;
       carStore.setSelectedCar(car, true);
     }
-    const button = document.querySelector('#btn-update') as HTMLButtonElement;
-    button.disabled = false;
-    button.classList.remove('btn-disabled');
+    const buttonUpdate = document.querySelector('#btn-update') as HTMLButtonElement;
+    buttonUpdate.disabled = false;
   }
 
-  private async handleStart(id: number) {}
+  private async handleStart() {}
 
-  private async handleStop(id: number) {}
+  private async handleStop() {}
 
   private createCard(car: Car) {
     const card = this.createElement('div', 'card');
@@ -78,7 +85,8 @@ class Card extends Component {
     removeCar.dataset.id = `${car.id}`;
     const carName = this.createElement('span', 'card-title', car.name);
     const startButton = this.createElement('button', 'card-start', 'A');
-    const stopButton = this.createElement('button', 'card-stop', 'B');
+    const stopButton = this.createElement('button', 'card-stop', 'B') as HTMLButtonElement;
+    stopButton.disabled = true;
     const carImage = this.createElement('div', 'car-img');
     const flagImage = this.createElement('div', 'flag-img');
     const line = this.createElement('div', 'card-line');

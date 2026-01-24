@@ -8,10 +8,6 @@ class Button extends Component {
     this.element.textContent = text;
   }
 
-  buttonIsActive(isActive: string) {
-    this.element.setAttribute('disabled', isActive);
-  }
-
   render() {
     return this.element;
   }

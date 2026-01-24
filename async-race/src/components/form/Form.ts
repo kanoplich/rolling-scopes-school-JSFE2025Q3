@@ -71,8 +71,9 @@ class Form extends Component {
       await carStore.loadCars();
       nameInput.value = '';
       carStore.setSelectedCar(car, false);
+      nameInput.disabled = true;
+      colorInput.disabled = true;
       button.disabled = true;
-      button.classList.add('btn-disabled');
     }
   }
 
@@ -82,7 +83,6 @@ class Form extends Component {
 
   private async handleGenerate(button: HTMLButtonElement) {
     button.disabled = true;
-    button.classList.add('btn-disabled');
     const carsData = [];
 
     for (let index = 1; index <= 100; index += 1) {
@@ -92,10 +92,9 @@ class Form extends Component {
       carsData.push(carStore.createCar(name, color));
     }
 
-    await Promise.race(carsData);
+    await Promise.all(carsData);
     await carStore.loadCars();
 
-    button.classList.remove('btn-disabled');
     button.disabled = false;
   }
 
@@ -108,17 +107,22 @@ class Form extends Component {
     const inputGroup = this.createElement('div', 'form-group');
 
     const inputText = new Input('text', idInputText);
-    const inputTextHTML = inputText.render();
+    const inputTextHTML = inputText.render() as HTMLInputElement;
+    if (idInputText === 'update-text') {
+      inputTextHTML.disabled = true;
+    }
 
     const inputColor = new Input('color', idInputColor);
     inputColor.setAttribute('value', '#bfbfbf');
-    const inputColorHTML = inputColor.render();
+    const inputColorHTML = inputColor.render() as HTMLInputElement;
+    if (idInputColor === 'update-color') {
+      inputColorHTML.disabled = true;
+    }
 
     const button = new Button(idButton, textButton);
-    const buttonHTML = button.render();
+    const buttonHTML = button.render() as HTMLButtonElement;
     if (idButton === 'btn-update') {
-      button.buttonIsActive('true');
-      buttonHTML.classList.add('btn-disabled');
+      buttonHTML.disabled = true;
     }
 
     inputGroup.append(inputTextHTML, inputColorHTML, buttonHTML);
