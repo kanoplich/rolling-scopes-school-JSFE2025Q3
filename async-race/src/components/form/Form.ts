@@ -1,5 +1,6 @@
 import Component from '../../core/Component';
 import { carStore } from '../../store/CarStore';
+import { generateCarColor, generateCarName } from '../../utils/generateCarData';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import './style.css';
@@ -36,7 +37,7 @@ class Form extends Component {
         break;
       }
       case 'btn-generate': {
-        this.handleGenerate();
+        this.handleGenerate(button);
         break;
       }
     }
@@ -51,8 +52,43 @@ class Form extends Component {
 
     if (name && color) {
       await carStore.createCar(name, color);
+      await carStore.loadCars();
       nameInput.value = '';
     }
+  }
+
+  private async handleUpdate() {
+    //   const nameInput = this.element.querySelector('#update-text') as HTMLInputElement;
+    //   const colorInput = this.element.querySelector('#update-color') as HTMLInputElement;
+    //   const name = nameInput.value;
+    //   const color = colorInput.value;
+    //   if (name && color) {
+    //     await carStore.updateCar(name, color);
+    //     nameInput.value = '';
+    //   }
+  }
+
+  private handleRace() {}
+
+  private handleReset() {}
+
+  private async handleGenerate(button: HTMLButtonElement) {
+    button.disabled = true;
+    button.classList.add('btn-disabled');
+    const carsData = [];
+
+    for (let index = 1; index <= 100; index += 1) {
+      const name = generateCarName();
+      const color = generateCarColor();
+
+      carsData.push(carStore.createCar(name, color));
+    }
+
+    await Promise.race(carsData);
+    await carStore.loadCars();
+
+    button.classList.remove('btn-disabled');
+    button.disabled = false;
   }
 
   private createFormGroup(

@@ -12,3 +12,9 @@
   padding: 0.5rem 0;
   gap: 0.25rem;
 }
+
+.btn-disabled {
+  cursor: auto;
+  background-color: gray;
+  border-color: gray;
+}

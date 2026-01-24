@@ -35,7 +35,8 @@
   margin-left: calc(100% - 250px);
 }
 
-.card-btn {
+.card-select,
+.card-remove {
   cursor: pointer;
   color: black;
   font-weight: 400;

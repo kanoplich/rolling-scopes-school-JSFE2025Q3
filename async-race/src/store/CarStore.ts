@@ -1,5 +1,5 @@
 import type { Car } from '../types/type';
-import { createCar, getCars } from '../utils/api';
+import { createCar, deleteCar, getCars, updateCar } from '../utils/api';
 
 class CarStore {
   private static instance: CarStore;
@@ -42,10 +42,27 @@ class CarStore {
   async createCar(name: string, color: string) {
     try {
       await createCar(name, color);
-      await this.loadCars(this.page);
       this.notify();
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async updateCar(id: number, name: string, color: string) {
+    try {
+      await updateCar(id, name, color);
+      this.notify();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteCar(id: number) {
+    try {
+      await deleteCar(id);
+      this.notify();
+    } catch (error) {
+      console.log(error);
     }
   }
 

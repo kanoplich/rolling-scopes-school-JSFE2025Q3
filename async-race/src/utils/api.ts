@@ -33,8 +33,21 @@ export const createCar = async (name: string, color: string) => {
   return car;
 };
 
+export const updateCar = async (id: number, name: string, color: string) => {
+  const response = await fetch(`${URL}/garage/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name, color }),
+  });
+
+  const car: Car = await response.json();
+  return car;
+};
+
 export const deleteCar = async (id: number) => {
-  const response = await fetch(`${URL}/${id}`, {
+  const response = await fetch(`${URL}/garage/${id}`, {
     method: 'DELETE',
   });
 

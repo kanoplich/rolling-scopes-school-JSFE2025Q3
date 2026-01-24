@@ -1,16 +1,15 @@
 import Card from '../../components/card/Card';
 import Form from '../../components/form/Form';
+import GarageHeader from '../../components/garageHeader/GarageHeader';
 import Paginate from '../../components/paginate/Paginate';
 import Component from '../../core/Component';
-import { carStore } from '../../store/CarStore';
 import './style.css';
 
 class GaragePage extends Component {
   private readonly form: Form;
   private readonly card: Card;
   private readonly paginate: Paginate;
-  private carsCount: string;
-  private page: number;
+  private readonly garageHeader: GarageHeader;
 
   constructor(id: string) {
     super('main', 'main');
@@ -18,19 +17,16 @@ class GaragePage extends Component {
     this.form = new Form();
     this.card = new Card();
     this.paginate = new Paginate();
-    this.carsCount = carStore.getTotalCarsCount();
-    this.page = carStore.getCurrentPage();
+    this.garageHeader = new GarageHeader();
   }
 
   render() {
     const formHTML = this.form.render();
     const cardHTML = this.card.render();
-    const title = this.createElement('h2', 'garage-title', `Garage (${this.carsCount})`);
-    const page = this.createElement('div', 'garage-page', `Page #${this.page}`);
-
+    const garageHeaderHTML = this.garageHeader.render();
     const paginateHTML = this.paginate.render();
 
-    this.element.append(formHTML, title, page, cardHTML, paginateHTML);
+    this.element.append(formHTML, garageHeaderHTML, cardHTML, paginateHTML);
     return this.element;
   }
 }
