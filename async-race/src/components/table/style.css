@@ -9,4 +9,11 @@
 
 .th {
   padding: 0.5rem;
+  width: 5rem;
+}
+
+.td {
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
 }

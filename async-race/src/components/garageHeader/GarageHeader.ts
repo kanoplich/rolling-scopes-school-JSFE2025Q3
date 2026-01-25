@@ -1,6 +1,5 @@
 import Component from '../../core/Component';
 import { carStore } from '../../store/CarStore';
-import './style.css';
 
 class GarageHeader extends Component {
   constructor() {

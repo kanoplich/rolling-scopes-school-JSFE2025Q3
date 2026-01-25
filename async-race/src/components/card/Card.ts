@@ -91,7 +91,7 @@ class Card extends Component {
 
     animationStart(carImage, time);
     const response = await carStore.drive(+id);
-    if (response.status !== 200) {
+    if (!response?.success) {
       animationStop(carImage);
     }
   }

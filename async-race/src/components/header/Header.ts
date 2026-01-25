@@ -11,8 +11,9 @@ class Header extends Component {
   }
 
   render() {
+    const winner = this.createElement('div', 'winner');
     const navigateHTML = this.navigate.render();
-    this.element.append(navigateHTML);
+    this.element.append(navigateHTML, winner);
 
     return this.element;
   }

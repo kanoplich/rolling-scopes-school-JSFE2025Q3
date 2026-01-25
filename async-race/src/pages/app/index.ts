@@ -1,5 +1,6 @@
 import Header from '../../components/header/Header';
 import { carStore } from '../../store/CarStore';
+import { winnersStore } from '../../store/WinnersStore';
 import GaragePage from '../garage/GaragePage';
 import WinnersPage from '../winners/WinnersPage';
 
@@ -57,6 +58,7 @@ class App {
 
   async mounted() {
     await carStore.loadCars();
+    await winnersStore.loadWinners();
 
     this.initialPage();
   }

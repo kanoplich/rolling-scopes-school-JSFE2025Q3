@@ -1,7 +1,11 @@
 import Component from '../../core/Component';
 import { carStore } from '../../store/CarStore';
+import { winnersStore } from '../../store/WinnersStore';
+import type { Winner } from '../../types/type';
 import { animationStart, animationStop, resetAnimation } from '../../utils/animation';
+import { createWinner, updateWinner } from '../../utils/api';
 import { generateCarColor, generateCarName } from '../../utils/generateCarData';
+import { showWinner } from '../../utils/showWinner';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import './style.css';
@@ -79,6 +83,7 @@ class Form extends Component {
   }
 
   private async handleRace(button: HTMLButtonElement) {
+    let result = true;
     button.disabled = true;
     const cars = carStore.getCars();
     const response = await Promise.all(cars.map((car) => carStore.startEngine(car.id)));
@@ -94,12 +99,49 @@ class Form extends Component {
       const carImage = document.querySelector(`.car-img[data-id="${id}"]`) as HTMLElement;
 
       animationStart(carImage, time);
-      carStore.drive(id).then((response) => {
-        if (response.status !== 200) {
+      carStore.drive(id).then(async (response) => {
+        if (!response?.success) {
           animationStop(carImage);
+        }
+
+        if (response?.success && result) {
+          result = false;
+          showWinner(cars[index].name, time);
+
+          const winner = await winnersStore.getWinner(cars[index].id);
+
+          if (winner) {
+            this.updateWinner(winner, time);
+          } else {
+            this.createWinner(cars[index].id, time);
+          }
         }
       });
     }
+  }
+
+  private async updateWinner(winner: Winner, time: number) {
+    const bestTime = Math.min(Number((time / 1000).toFixed(2)), winner.time);
+    const countWins = winner.wins + 1;
+    const body = {
+      id: winner.id,
+      wins: countWins,
+      time: bestTime,
+    };
+    await updateWinner(winner.id, body);
+    await winnersStore.loadWinners();
+  }
+
+  private async createWinner(id: number, time: number) {
+    const bestTime = Number((time / 1000).toFixed(2));
+    const body = {
+      id,
+      wins: 1,
+      time: bestTime,
+    };
+
+    await createWinner(body);
+    await winnersStore.loadWinners();
   }
 
   private async handleReset(button: HTMLButtonElement) {

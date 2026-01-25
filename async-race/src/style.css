@@ -49,3 +49,15 @@ input:disabled {
   align-items: center;
   gap: 1rem;
 }
+
+.winner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: gold;
+  font-size: 3rem;
+  font-weight: 700;
+  z-index: 100;
+}

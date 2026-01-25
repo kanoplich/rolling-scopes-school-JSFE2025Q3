@@ -1,8 +1,9 @@
-import type { Car } from '../types/type';
+import type { Car, Cars } from '../types/type';
 import {
   createCar,
   deleteCar,
   drive,
+  getCar,
   getCars,
   startEngine,
   stopEngine,
@@ -11,8 +12,8 @@ import {
 
 class CarStore {
   private static instance: CarStore;
-  private cars: Car[] = [];
-  private totalCountCars: string = '0';
+  private cars: Cars = [];
+  private totalCountCars: string = '';
   private readonly pages = {
     currentPage: 1,
     totalPage: Math.ceil(+this.totalCountCars / 7),
@@ -76,6 +77,15 @@ class CarStore {
   async deleteCar(id: number) {
     try {
       await deleteCar(id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getCarFromTotalCountCars(id: number) {
+    try {
+      const car = await getCar(id);
+      return car;
     } catch (error) {
       console.log(error);
     }
