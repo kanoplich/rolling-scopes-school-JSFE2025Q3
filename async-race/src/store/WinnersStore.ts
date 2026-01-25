@@ -41,6 +41,7 @@ class WinnersStore {
       const response = await getWinners(page, limit, sort, order);
       this.winners = response.winners;
       this.totalCountWinners = response.totalCountWinners;
+      this.pages.totalPage = Math.ceil(+this.totalCountWinners / 10);
       this.notify();
     } catch (error) {
       console.error(error);
@@ -67,6 +68,14 @@ class WinnersStore {
 
   getCurrentPage() {
     return this.pages.currentPage;
+  }
+
+  getTotalPages() {
+    return this.pages.totalPage;
+  }
+
+  setCurrentPage(value: number) {
+    this.pages.currentPage = value;
   }
 }
 
