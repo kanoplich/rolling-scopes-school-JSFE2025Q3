@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/',
+  base: '/kanoplich-JSFE2025Q3/async-race/',
   build: {
-    outDir: 'dist',
+    outDir: 'dist/async-race',
   },
 });
