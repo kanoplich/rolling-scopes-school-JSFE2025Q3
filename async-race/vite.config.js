@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/async-race/',
+  base: '/',
   build: {
-    outDir: 'dist/async-race',
+    outDir: 'dist',
   },
 });
