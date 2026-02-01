@@ -1,3 +1,7 @@
 import './style.css';
+import App from './pages/app';
 
-document.body.innerHTML = '<div>Testing</div>';
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new App();
+  app.run();
+});
