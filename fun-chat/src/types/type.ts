@@ -4,3 +4,8 @@ export interface Routes {
   path: string;
   element: Component;
 }
+
+export interface Validation {
+  isValid: boolean;
+  message: string;
+}

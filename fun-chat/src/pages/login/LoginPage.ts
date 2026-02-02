@@ -1,13 +1,18 @@
+import LoginForm from '../../components/loginForm/LoginForm';
 import Component from '../../core/Component';
 import './style.css';
 
 class LoginPage extends Component {
+  private readonly loginForm: LoginForm;
   constructor() {
-    super('main', 'main');
+    super('div', 'login-container');
+    this.loginForm = new LoginForm();
   }
 
   render() {
-    this.element.textContent = 'Login Page';
+    const title = this.createElement('h2', 'login-title', 'Authorization');
+    const formHTML = this.loginForm.render();
+    this.element.append(title, formHTML);
 
     return this.element;
   }
