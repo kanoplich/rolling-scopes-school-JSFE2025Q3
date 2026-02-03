@@ -31,5 +31,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

@@ -3,12 +3,16 @@ import type { Validation } from '../../types/type';
 import {
   hideValidateError,
   showValidateError,
+  validateForm,
   validateName,
   validatePassword,
 } from '../../utils/validation';
 import './style.css';
 
 class LoginForm extends Component {
+  private nameError!: HTMLElement | null;
+  private passwordError!: HTMLElement | null;
+
   constructor() {
     super('form', 'form-login');
     this.element.addEventListener('input', this.handleInput.bind(this));
@@ -26,31 +30,19 @@ class LoginForm extends Component {
     switch (target.id) {
       case 'name': {
         const data = validateName(target.value);
-        const element = document.querySelector('#name-error');
-
-        if (!element) {
-          return;
-        }
-
-        this.showError(element, data);
+        this.showError(this.nameError, data);
         break;
       }
       case 'password': {
         const data = validatePassword(target.value);
-        const element = document.querySelector('#password-error');
-
-        if (!element) {
-          return;
-        }
-
-        this.showError(element, data);
+        this.showError(this.passwordError, data);
         break;
       }
     }
   }
 
-  private showError(element: Element, data: Validation) {
-    if (!(element instanceof HTMLElement)) {
+  private showError(element: HTMLElement | null, data: Validation) {
+    if (!element) {
       return;
     }
 
@@ -69,6 +61,7 @@ class LoginForm extends Component {
     const input = this.createElement('input', 'form-input');
     input.setAttribute('type', `${type}`);
     input.setAttribute('id', `${name}`);
+    input.setAttribute('name', `${name}`);
     input.setAttribute('placeholder', `Enter ${name}`);
 
     const error = this.createElement('div', 'form-error');
@@ -85,14 +78,37 @@ class LoginForm extends Component {
     button.setAttribute('id', 'form-button');
 
     button.addEventListener('click', (event) => {
-      event.preventDefault();
-
-      if (!(this.element instanceof HTMLFormElement)) {
-        return;
-      }
+      this.handleButtonClick(event);
     });
 
     return button;
+  }
+
+  private handleButtonClick(event: Event) {
+    event.preventDefault();
+
+    if (!(this.element instanceof HTMLFormElement)) {
+      return;
+    }
+
+    const formData = new FormData(this.element);
+    const { name, password, nameValidation, passwordValidation } = validateForm(formData);
+
+    if (!nameValidation.isValid) {
+      this.showError(this.nameError, nameValidation);
+    }
+
+    if (!passwordValidation.isValid) {
+      this.showError(this.passwordError, passwordValidation);
+    }
+
+    if (nameValidation.isValid && passwordValidation.isValid) {
+      sessionStorage.setItem('name', name);
+      sessionStorage.setItem('password', password);
+
+      globalThis.history.replaceState({}, '', '/');
+      globalThis.dispatchEvent(new PopStateEvent('popstate'));
+    }
   }
 
   render() {
@@ -101,6 +117,10 @@ class LoginForm extends Component {
     const button = this.createFormButton();
 
     this.element.append(login, password, button);
+
+    this.nameError = this.element.querySelector('#name-error');
+    this.passwordError = this.element.querySelector('#password-error');
+
     return this.element;
   }
 }

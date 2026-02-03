@@ -43,6 +43,24 @@ export function validatePassword(password: string): Validation {
   return { isValid: true, message: '' };
 }
 
+export function validateForm(formData: FormData) {
+  const name = formData.get('name');
+  const password = formData.get('password');
+
+  const nameValue = typeof name === 'string' ? name.trim() : '';
+  const passwordValue = typeof password === 'string' ? password.trim() : '';
+
+  const nameValidation = validateName(nameValue);
+  const passwordValidation = validatePassword(passwordValue);
+
+  return {
+    nameValidation,
+    passwordValidation,
+    name: nameValue,
+    password: passwordValue,
+  };
+}
+
 export function showValidateError(element: HTMLElement, data: Validation) {
   if (element.classList.contains('show')) {
     element.textContent = `${data.message}`;

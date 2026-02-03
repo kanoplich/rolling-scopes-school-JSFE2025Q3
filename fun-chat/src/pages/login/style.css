@@ -3,8 +3,8 @@
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   padding: 40px;
+  max-width: 400px;
   width: 100%;
-  max-width: 500px;
 }
 
 .login-title {
@@ -12,5 +12,5 @@
   color: #333;
   margin-bottom: 30px;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
 }
