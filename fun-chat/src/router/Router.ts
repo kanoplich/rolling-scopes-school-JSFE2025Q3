@@ -4,6 +4,7 @@ import HomePage from '../pages/home/HomePage';
 import AboutPage from '../pages/about/AboutPage';
 import LoginPage from '../pages/login/LoginPage';
 import NotFoundPage from '../pages/notFound/NotFoundPage';
+import { store } from '../store/Store';
 
 class Router extends Component {
   private readonly routes: Routes[];
@@ -35,6 +36,24 @@ class Router extends Component {
       },
     ];
 
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLElement)) {
+        return;
+      }
+
+      const target = event.target;
+      const link = target.closest('.list-link');
+
+      if (!(link instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const href = link.href;
+      this.navigate(href);
+    });
+
     globalThis.addEventListener('popstate', () => {
       this.resolveRoute();
     });
@@ -50,8 +69,13 @@ class Router extends Component {
   private resolveRoute() {
     const currentPath = globalThis.location.pathname;
     const route = this.routes.find((route) => route.path === currentPath);
+    const { isLogined } = store.getUser();
 
-    if (route) {
+    if (!isLogined) {
+      this.element.innerHTML = '';
+      history.pushState({}, '', '/login');
+      this.element.append(this.loginPage.render());
+    } else if (route) {
       this.element.innerHTML = '';
       this.element.append(route.element.render());
     } else {

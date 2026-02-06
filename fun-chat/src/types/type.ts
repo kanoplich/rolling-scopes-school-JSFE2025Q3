@@ -5,6 +5,11 @@ export interface Routes {
   element: Component;
 }
 
+export interface Links {
+  title: string;
+  path: string;
+}
+
 export interface Validation {
   isValid: boolean;
   message: string;

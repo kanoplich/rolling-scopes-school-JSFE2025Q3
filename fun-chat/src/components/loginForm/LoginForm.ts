@@ -1,5 +1,8 @@
+import { send } from '../../api/websocket';
 import Component from '../../core/Component';
+import { store } from '../../store/Store';
 import type { Validation } from '../../types/type';
+import type { WebSocketRequest } from '../../types/webSocketType';
 import {
   hideValidateError,
   showValidateError,
@@ -102,16 +105,54 @@ class LoginForm extends Component {
       this.showError(this.passwordError, passwordValidation);
     }
 
-    if (nameValidation.isValid && passwordValidation.isValid) {
-      sessionStorage.setItem('name', name);
-      sessionStorage.setItem('password', password);
+    if (nameValidation.isValid && passwordValidation.isValid && store.getWebSocketStatus()) {
+      this.authorization(name, password);
+    }
+  }
 
-      globalThis.history.replaceState({}, '', '/');
-      globalThis.dispatchEvent(new PopStateEvent('popstate'));
+  private async authorization(name: string, password: string) {
+    const data: WebSocketRequest = {
+      id: `${Date.now()}`,
+      type: 'USER_LOGIN',
+      payload: {
+        user: {
+          login: name,
+          password,
+        },
+      },
+    };
+
+    try {
+      await send(data);
+
+      const { isLogined, error } = store.getUser();
+
+      if (isLogined) {
+        sessionStorage.setItem('login', name);
+        sessionStorage.setItem('isLogined', `${isLogined}`);
+
+        globalThis.history.replaceState({}, '', '/');
+        globalThis.dispatchEvent(new PopStateEvent('popstate'));
+      } else {
+        const data = {
+          isValid: false,
+          message: error,
+        };
+
+        if (!this.passwordError) {
+          return;
+        }
+
+        showValidateError(this.passwordError, data);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
   render() {
+    this.element.innerHTML = '';
+
     const login = this.createFormInput('name', 'text');
     const password = this.createFormInput('password', 'password');
     const button = this.createFormButton();

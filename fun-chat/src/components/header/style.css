@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+.user-title {
+  color: #333;
+  font-size: clamp(0.875rem, 0.7167rem + 0.6667vw, 1.25rem);
+  font-weight: 500;
+}
+
+.chat-title {
+  font-size: clamp(1.25rem, 1.1444rem + 0.4444vw, 1.5rem);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    flex-wrap: wrap-reverse;
+  }
+  .user-title {
+    flex-basis: 100%;
+    margin-top: 20px;
+  }
+}

@@ -10,6 +10,8 @@ class LoginPage extends Component {
   }
 
   render() {
+    this.element.innerHTML = '';
+
     const title = this.createElement('h2', 'login-title', 'Authorization');
     const formHTML = this.loginForm.render();
     this.element.append(title, formHTML);
