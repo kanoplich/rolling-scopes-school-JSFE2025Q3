@@ -12,9 +12,7 @@ export function connect() {
     const ws = new WebSocket('ws://localhost:4000/');
 
     ws.addEventListener('open', open);
-
     ws.addEventListener('close', close);
-
     ws.addEventListener('message', message);
 
     store.setWebSocket(ws);
@@ -43,28 +41,7 @@ function message(event: MessageEvent) {
       responseHandlers.delete(data.id);
     }
 
-    if (!data.payload) {
-      return;
-    }
-
-    if (data.type === 'ERROR') {
-      if (data.payload.error) {
-        const error = data.payload.error.slice(0, 1).toUpperCase() + data.payload.error.slice(1);
-        const { login } = store.getUser();
-        store.setUser(login, false, error);
-      }
-      return;
-    }
-
-    const { user } = data.payload;
-
-    if (!user) {
-      return;
-    }
-
-    store.setUser(user.login, user.isLogined, '');
-
-    return data;
+    handleResponse(data);
   } catch (error) {
     console.log(error);
   }
@@ -88,4 +65,27 @@ export function send(data: WebSocketRequest): Promise<WebSocketResponse> {
       console.log(error);
     }
   });
+}
+
+function handleResponse(data: WebSocketResponse) {
+  switch (data.type) {
+    case 'USER_LOGIN':
+    case 'USER_LOGOUT': {
+      const { login, isLogined } = data.payload.user;
+      store.setUser(login, isLogined);
+      store.setAllUsers([]);
+      break;
+    }
+    case 'USER_ACTIVE':
+    case 'USER_INACTIVE': {
+      const users = data.payload.users;
+      store.setAllUsers(users);
+      break;
+    }
+    case 'ERROR': {
+      const error = data.payload.error.slice(0, 1).toUpperCase() + data.payload.error.slice(1);
+      store.setErrorMessage(error);
+      break;
+    }
+  }
 }

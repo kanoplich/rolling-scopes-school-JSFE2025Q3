@@ -7,14 +7,14 @@ export function validateName(name: string): Validation {
     return { isValid: false, message: 'Enter your name' };
   }
 
-  if (trimmedName.length < 4) {
+  if (trimmedName.length < 2) {
     return {
       isValid: false,
-      message: 'The name must contain at least 4 characters',
+      message: 'The name must contain at least 2 characters',
     };
   }
 
-  if (name.trim().length > 15) {
+  if (name.trim().length > 20) {
     return { isValid: false, message: 'The name is too long' };
   }
 

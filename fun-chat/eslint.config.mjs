@@ -18,6 +18,7 @@ export default defineConfig(
   eslintPluginUnicorn.configs.recommended,
   {
     rules: {
+      'unicorn/no-null': 'off',
       'unicorn/better-regex': 'warn',
       'unicorn/filename-case': [
         'error',

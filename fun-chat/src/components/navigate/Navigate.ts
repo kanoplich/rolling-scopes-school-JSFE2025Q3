@@ -1,5 +1,8 @@
 import Component from '../../core/Component';
+import { store } from '../../store/Store';
+import { send } from '../../api/websocket';
 import type { Links } from '../../types/type';
+import type { WebSocketRequest } from '../../types/webSocketType';
 import './style.css';
 
 class Navigate extends Component {
@@ -20,11 +23,38 @@ class Navigate extends Component {
       const li = this.createElement('li', 'list-item');
       const a = this.createElement('a', 'list-link', `${link.title}`);
       a.setAttribute('href', `${link.path}`);
+
+      if (link.title === 'Log out') {
+        a.addEventListener('click', (event) => {
+          event.preventDefault();
+          this.handleClick();
+        });
+      }
+
       li.append(a);
       ul.append(li);
     }
 
     return ul;
+  }
+
+  private async handleClick() {
+    const { login } = store.getUser();
+    const password = store.getPassword();
+
+    const data: WebSocketRequest = {
+      id: `${Date.now()}`,
+      type: 'USER_LOGOUT',
+      payload: {
+        user: {
+          login,
+          password,
+        },
+      },
+    };
+
+    await send(data);
+    sessionStorage.setItem('isLogined', `false`);
   }
 
   render() {

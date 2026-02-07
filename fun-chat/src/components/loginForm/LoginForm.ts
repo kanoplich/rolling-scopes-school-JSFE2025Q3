@@ -125,18 +125,19 @@ class LoginForm extends Component {
     try {
       await send(data);
 
-      const { isLogined, error } = store.getUser();
+      const { isLogined } = store.getUser();
 
       if (isLogined) {
         sessionStorage.setItem('login', name);
         sessionStorage.setItem('isLogined', `${isLogined}`);
+        store.setPassword(password);
 
         globalThis.history.replaceState({}, '', '/');
         globalThis.dispatchEvent(new PopStateEvent('popstate'));
       } else {
         const data = {
           isValid: false,
-          message: error,
+          message: store.getErrorMessage(),
         };
 
         if (!this.passwordError) {

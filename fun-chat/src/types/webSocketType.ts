@@ -1,18 +1,82 @@
-export interface WebSocketRequest {
+export type WebSocketRequest =
+  | LoginRequest
+  | LogoutRequest
+  | UserActiveRequest
+  | UserInactiveRequest;
+
+export type WebSocketResponse =
+  | LoginResponse
+  | LogoutResponse
+  | UserActiveResponse
+  | UserInactiveResponse
+  | Error;
+
+interface LoginRequest {
   id: string;
-  type: 'USER_LOGIN' | 'USER_LOGOUT' | 'ERROR';
+  type: 'USER_LOGIN';
   payload: {
-    user?: UserRequest;
-  } | null;
+    user: UserRequest;
+  };
 }
 
-export interface WebSocketResponse {
+interface LoginResponse {
   id: string;
-  type: 'USER_LOGIN' | 'USER_LOGOUT' | 'ERROR';
+  type: 'USER_LOGIN';
   payload: {
-    user?: UserResponse;
-    error?: string;
-  } | null;
+    user: UserResponse;
+  };
+}
+
+interface LogoutRequest {
+  id: string;
+  type: 'USER_LOGOUT';
+  payload: {
+    user: UserRequest;
+  };
+}
+
+interface LogoutResponse {
+  id: string;
+  type: 'USER_LOGOUT';
+  payload: {
+    user: UserResponse;
+  };
+}
+
+export interface UserActiveRequest {
+  id: string;
+  type: 'USER_ACTIVE';
+  payload: null;
+}
+
+interface UserActiveResponse {
+  id: string;
+  type: 'USER_ACTIVE';
+  payload: {
+    users: UserResponse[];
+  };
+}
+
+export interface UserInactiveRequest {
+  id: string;
+  type: 'USER_INACTIVE';
+  payload: null;
+}
+
+interface UserInactiveResponse {
+  id: string;
+  type: 'USER_INACTIVE';
+  payload: {
+    users: UserResponse[];
+  };
+}
+
+interface Error {
+  id: string;
+  type: 'ERROR';
+  payload: {
+    error: string;
+  };
 }
 
 interface UserRequest {
@@ -20,7 +84,7 @@ interface UserRequest {
   password: string;
 }
 
-interface UserResponse {
+export interface UserResponse {
   login: string;
   isLogined: boolean;
 }

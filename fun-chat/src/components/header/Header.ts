@@ -1,5 +1,6 @@
 import Component from '../../core/Component';
 import Navigate from '../navigate/Navigate';
+import { store } from '../../store/Store';
 import './style.css';
 
 class Header extends Component {
@@ -10,7 +11,8 @@ class Header extends Component {
   }
 
   private createUserElement() {
-    const label = this.createElement('div', 'user-title', `User: Andrei`);
+    const { login } = store.getUser();
+    const label = this.createElement('div', 'user-title', `User: ${login}`);
 
     return label;
   }
