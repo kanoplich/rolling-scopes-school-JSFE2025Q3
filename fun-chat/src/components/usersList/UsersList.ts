@@ -12,6 +12,27 @@ class UsersList extends Component {
     this.search = new Search();
   }
 
+  private handleClick(event: Event) {
+    const target = event.target;
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const userItem = target.closest('.user-item');
+    if (!userItem) {
+      return;
+    }
+
+    const login = userItem.querySelector('.user-login')?.textContent;
+    const users = store.getAllUsers();
+    const user = users.find((user) => user.login === login);
+
+    if (user) {
+      store.setCheckedUser(user.login, user.isLogined);
+    }
+  }
+
   private createUserList() {
     this.element.innerHTML = '';
     const users = store.getAllUsers();
@@ -19,12 +40,16 @@ class UsersList extends Component {
     const ul = this.createElement('ul', 'users-list');
     for (const user of users) {
       const li = this.createElement('li', 'user-item');
-      const status = this.createElement('span', `user-status-${user.isLogined}`);
+      const status = user.isLogined
+        ? this.createElement('span', `user-status-online`)
+        : this.createElement('span', `user-status-offline`);
       const login = this.createElement('span', 'user-login', `${user.login}`);
 
       li.append(status, login);
       ul.append(li);
     }
+
+    ul.addEventListener('click', (event) => this.handleClick(event));
 
     const searchHTML = this.search.render();
     this.element.append(searchHTML, ul);

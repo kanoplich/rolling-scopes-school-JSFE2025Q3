@@ -7,6 +7,10 @@ class Store {
     isLogined: sessionStorage.getItem('isLogined') || false,
   };
   private allUsers: UserResponse[] = [];
+  private checkedUser = {
+    login: '',
+    isLogined: false,
+  };
   private errorMessage = '';
   private password = '';
   private isConnected = false;
@@ -83,6 +87,18 @@ class Store {
 
   getAllUsers() {
     return this.allUsers;
+  }
+
+  setCheckedUser(login: string, isLogined: boolean) {
+    this.checkedUser = {
+      login,
+      isLogined,
+    };
+    this.notify();
+  }
+
+  getCheckedUser() {
+    return this.checkedUser;
   }
 }
 

@@ -39,9 +39,8 @@ function message(event: MessageEvent) {
     if (handler) {
       handler(data);
       responseHandlers.delete(data.id);
+      handleResponse(data);
     }
-
-    handleResponse(data);
   } catch (error) {
     console.log(error);
   }
