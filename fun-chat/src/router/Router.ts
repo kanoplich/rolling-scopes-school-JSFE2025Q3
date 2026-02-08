@@ -71,7 +71,7 @@ class Router extends Component {
     const route = this.routes.find((route) => route.path === currentPath);
     const { isLogined } = store.getUser();
 
-    if (!isLogined) {
+    if (!isLogined && route?.path !== '/about') {
       this.element.innerHTML = '';
       history.pushState({}, '', '/login');
       this.element.append(this.loginPage.render());

@@ -3,7 +3,8 @@ export type WebSocketRequest =
   | LogoutRequest
   | UserActiveRequest
   | UserInactiveRequest
-  | MessageSendRequest;
+  | MessageSendRequest
+  | MessageFromUserRequest;
 
 export type WebSocketResponse =
   | LoginResponse
@@ -11,6 +12,7 @@ export type WebSocketResponse =
   | UserActiveResponse
   | UserInactiveResponse
   | MessageSendResponse
+  | MessageFromUserResponse
   | Error;
 
 interface LoginRequest {
@@ -120,5 +122,23 @@ export interface MessageResponse {
     isDelivered: boolean;
     isReaded: boolean;
     isEdited: boolean;
+  };
+}
+
+interface MessageFromUserRequest {
+  id: string;
+  type: 'MSG_FROM_USER';
+  payload: {
+    user: {
+      login: string;
+    };
+  };
+}
+
+interface MessageFromUserResponse {
+  id: string;
+  type: 'MSG_FROM_USER';
+  payload: {
+    messages: MessageResponse[] | [];
   };
 }

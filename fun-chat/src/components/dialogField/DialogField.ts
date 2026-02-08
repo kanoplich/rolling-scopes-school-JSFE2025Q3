@@ -23,6 +23,7 @@ class DialogField extends Component {
   }
 
   render() {
+    this.element.innerHTML = '';
     this.element.textContent = 'Select a user to send the message...';
     this.element.classList.add('dialog-placeholder');
     return this.element;

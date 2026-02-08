@@ -7,7 +7,10 @@ class NotFoundPage extends Component {
   }
 
   render() {
-    this.element.textContent = 'Not Found';
+    const error = this.createElement('div', 'notfound-error', '404');
+    const text = this.createElement('div', 'notfound-text', 'Page not Found');
+
+    this.element.append(error, text);
 
     return this.element;
   }

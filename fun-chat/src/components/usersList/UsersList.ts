@@ -106,12 +106,12 @@ class UsersList extends Component {
   }
 
   private mounted() {
-    this.loadUsers();
     store.subscribe(() => this.createUserList());
   }
 
   render() {
-    this.mounted();
+    this.loadUsers();
+    this.createUserList();
     const searchHTML = this.search.render();
     this.element.append(searchHTML, this.userListContainer);
 

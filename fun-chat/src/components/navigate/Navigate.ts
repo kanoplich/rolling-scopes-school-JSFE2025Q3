@@ -53,9 +53,11 @@ class Navigate extends Component {
       },
     };
 
-    await send(data);
     sessionStorage.setItem('isLogined', `false`);
     store.setCheckedUser('', false);
+    store.setMessage('');
+
+    await send(data);
   }
 
   render() {

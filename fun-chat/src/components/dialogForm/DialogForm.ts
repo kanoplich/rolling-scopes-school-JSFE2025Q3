@@ -34,7 +34,7 @@ class DialogForm extends Component {
     this.element.append(input, button);
   }
 
-  private handleSubmit(event: Event) {
+  private async handleSubmit(event: Event) {
     event.preventDefault();
 
     const input = this.element.querySelector('.dialog-input');
@@ -59,7 +59,7 @@ class DialogForm extends Component {
         },
       };
 
-      send(data);
+      await send(data);
     }
   }
 

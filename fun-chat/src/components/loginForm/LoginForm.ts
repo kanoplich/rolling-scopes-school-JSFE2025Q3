@@ -131,6 +131,7 @@ class LoginForm extends Component {
         sessionStorage.setItem('login', name);
         sessionStorage.setItem('isLogined', `${isLogined}`);
         store.setPassword(password);
+        store.setMessage('');
 
         globalThis.history.replaceState({}, '', '/');
         globalThis.dispatchEvent(new PopStateEvent('popstate'));
