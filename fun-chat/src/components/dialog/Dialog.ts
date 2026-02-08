@@ -1,47 +1,25 @@
 import Component from '../../core/Component';
+import DialogField from '../dialogField/DialogField';
 import DialogForm from '../dialogForm/DialogForm';
-import { store } from '../../store/Store';
+import DialogHeader from '../dialogHeader/DialogHeader';
 import './style.css';
 
 class Dialog extends Component {
+  private readonly header: DialogHeader;
+  private readonly field: DialogField;
   private readonly form: DialogForm;
   constructor() {
     super('article', 'content-dialog');
+    this.header = new DialogHeader();
+    this.field = new DialogField();
     this.form = new DialogForm();
   }
 
-  private createDialog() {
-    this.element.innerHTML = '';
-    const user = store.getCheckedUser();
-
-    const dialogHeaderElement = this.createElement('div', 'dialog-header');
-    const dialogFieldElement = this.createElement('div', 'dialog-field');
-    const dialogFormElement = this.form.render();
-    this.element.append(dialogHeaderElement, dialogFieldElement, dialogFormElement);
-
-    if (user.login.length === 0) {
-      return;
-    }
-
-    const loginElement = this.createElement('span', 'dialog-user', `${user.login}`);
-    const statusElement = this.createElement(
-      'span',
-      user.isLogined ? 'dialog-status-online' : 'dialog-status-offline',
-      user.isLogined ? 'online' : 'offline'
-    );
-
-    dialogHeaderElement.append(loginElement, statusElement);
-  }
-
-  mounted() {
-    store.subscribe(() => {
-      this.createDialog();
-    });
-  }
-
   render() {
-    this.mounted();
-
+    const headerElement = this.header.render();
+    const fieldElement = this.field.render();
+    const formElement = this.form.render();
+    this.element.append(headerElement, fieldElement, formElement);
     return this.element;
   }
 }

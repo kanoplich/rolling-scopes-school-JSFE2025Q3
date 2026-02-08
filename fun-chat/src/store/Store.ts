@@ -1,19 +1,21 @@
-import type { UserResponse } from '../types/webSocketType';
+import type { MessageResponse, UserResponse } from '../types/webSocketType';
 
 class Store {
   private static instance: Store;
   private user = {
     login: sessionStorage.getItem('login') || '',
-    isLogined: sessionStorage.getItem('isLogined') || false,
+    isLogined: JSON.parse(sessionStorage.getItem('isLogined') || 'false'),
   };
   private allUsers: UserResponse[] = [];
   private checkedUser = {
     login: '',
     isLogined: false,
   };
+  private message: '' | MessageResponse = '';
   private errorMessage = '';
   private password = '';
   private isConnected = false;
+  private searchValue = '';
   private webSocket: WebSocket | undefined = undefined;
   private listeners: (() => void)[] = [];
 
@@ -82,6 +84,7 @@ class Store {
 
   setAllUsers(users: UserResponse[]) {
     this.allUsers = users.length === 0 ? [] : [...this.allUsers, ...users];
+    this.allUsers = this.allUsers.filter((user) => user.login !== this.user.login);
     this.notify();
   }
 
@@ -99,6 +102,24 @@ class Store {
 
   getCheckedUser() {
     return this.checkedUser;
+  }
+
+  setSearchValue(value: string) {
+    this.searchValue = value;
+    this.notify();
+  }
+
+  getSearchValue() {
+    return this.searchValue;
+  }
+
+  setMessage(data: MessageResponse | '') {
+    this.message = data;
+    this.notify();
+  }
+
+  getMessage() {
+    return this.message;
   }
 }
 

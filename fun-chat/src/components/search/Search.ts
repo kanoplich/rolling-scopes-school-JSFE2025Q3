@@ -1,4 +1,5 @@
 import Component from '../../core/Component';
+import { store } from '../../store/Store';
 import './style.css';
 
 class Search extends Component {
@@ -15,11 +16,10 @@ class Search extends Component {
       return;
     }
 
-    const target = event.target;
-
     event.preventDefault();
 
-    console.log(target.value);
+    const target = event.target;
+    store.setSearchValue(target.value);
   }
 
   render() {

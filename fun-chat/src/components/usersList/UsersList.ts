@@ -6,10 +6,13 @@ import type { UserActiveRequest, UserInactiveRequest } from '../../types/webSock
 import { store } from '../../store/Store';
 
 class UsersList extends Component {
+  private readonly userListContainer: HTMLElement;
   private readonly search: Search;
   constructor() {
     super('aside', 'content-users');
     this.search = new Search();
+    this.userListContainer = this.createElement('div', 'users-list-container');
+    this.mounted();
   }
 
   private handleClick(event: Event) {
@@ -26,16 +29,47 @@ class UsersList extends Component {
 
     const login = userItem.querySelector('.user-login')?.textContent;
     const users = store.getAllUsers();
+    const checkedUser = store.getCheckedUser();
     const user = users.find((user) => user.login === login);
 
-    if (user) {
-      store.setCheckedUser(user.login, user.isLogined);
+    if (!user) {
+      return;
+    }
+
+    if (checkedUser.login === user.login) {
+      return;
+    }
+
+    const input = document.querySelector('.dialog-input');
+    const button = document.querySelector('.dialog-button');
+    const field = document.querySelector('.dialog-field');
+
+    store.setMessage('');
+    store.setCheckedUser(user.login, user.isLogined);
+
+    if (input) {
+      input.removeAttribute('disabled');
+    }
+
+    if (button) {
+      button.removeAttribute('disabled');
+    }
+
+    if (field) {
+      field.classList.remove('dialog-placeholder');
+      field.textContent = '';
+      field.innerHTML = '';
     }
   }
 
   private createUserList() {
-    this.element.innerHTML = '';
-    const users = store.getAllUsers();
+    this.userListContainer.innerHTML = '';
+    let users = store.getAllUsers();
+    const searchValue = store.getSearchValue();
+
+    if (searchValue.length > 0) {
+      users = users.filter((user) => user.login.toLowerCase().includes(searchValue.toLowerCase()));
+    }
 
     const ul = this.createElement('ul', 'users-list');
     for (const user of users) {
@@ -51,8 +85,7 @@ class UsersList extends Component {
 
     ul.addEventListener('click', (event) => this.handleClick(event));
 
-    const searchHTML = this.search.render();
-    this.element.append(searchHTML, ul);
+    this.userListContainer.append(ul);
   }
 
   private async loadUsers() {
@@ -72,13 +105,15 @@ class UsersList extends Component {
     await send(getInactiveUsers);
   }
 
-  mounted() {
+  private mounted() {
     this.loadUsers();
     store.subscribe(() => this.createUserList());
   }
 
   render() {
     this.mounted();
+    const searchHTML = this.search.render();
+    this.element.append(searchHTML, this.userListContainer);
 
     return this.element;
   }

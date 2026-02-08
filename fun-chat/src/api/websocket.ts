@@ -14,6 +14,7 @@ export function connect() {
     ws.addEventListener('open', open);
     ws.addEventListener('close', close);
     ws.addEventListener('message', message);
+    ws.addEventListener('error', error);
 
     store.setWebSocket(ws);
   } catch (error) {
@@ -28,7 +29,12 @@ function open() {
 
 function close() {
   store.setWebSocketStatus(false);
+  sessionStorage.setItem('isLogined', 'false');
   console.log('WS closed');
+}
+
+function error() {
+  console.log('WS error');
 }
 
 function message(event: MessageEvent) {
@@ -78,7 +84,14 @@ function handleResponse(data: WebSocketResponse) {
     case 'USER_ACTIVE':
     case 'USER_INACTIVE': {
       const users = data.payload.users;
-      store.setAllUsers(users);
+      if (users.length > 0) {
+        store.setAllUsers(users);
+      }
+      break;
+    }
+    case 'MSG_SEND': {
+      const messageData = data.payload.message;
+      store.setMessage(messageData);
       break;
     }
     case 'ERROR': {

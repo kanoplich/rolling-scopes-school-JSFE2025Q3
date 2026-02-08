@@ -128,7 +128,6 @@ class LoginForm extends Component {
       const { isLogined } = store.getUser();
 
       if (isLogined) {
-        console.log(isLogined);
         sessionStorage.setItem('login', name);
         sessionStorage.setItem('isLogined', `${isLogined}`);
         store.setPassword(password);
