@@ -46,6 +46,8 @@ function message(event: MessageEvent) {
       handler(data);
       responseHandlers.delete(data.id);
       handleResponse(data);
+    } else {
+      handleResponse(data);
     }
   } catch (error) {
     console.log(error);

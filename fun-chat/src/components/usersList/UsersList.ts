@@ -89,6 +89,7 @@ class UsersList extends Component {
   }
 
   private async loadUsers() {
+    store.setAllUsers([]);
     const getActiveUsers: UserActiveRequest = {
       id: `${Date.now()}`,
       type: 'USER_ACTIVE',

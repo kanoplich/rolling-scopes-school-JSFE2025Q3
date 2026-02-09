@@ -35,6 +35,8 @@ class Navigate extends Component {
       ul.append(li);
     }
 
+    store.setMessage('');
+
     return ul;
   }
 
@@ -55,7 +57,6 @@ class Navigate extends Component {
 
     sessionStorage.setItem('isLogined', `false`);
     store.setCheckedUser('', false);
-    store.setMessage('');
 
     await send(data);
   }
