@@ -1,0 +1,224 @@
+body {
+  background-color: #16213e;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+  width: calc(100% - 20px);
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title {
+  position: relative;
+  color: #ffffff;
+  font-size: clamp(2rem, 1.6415rem + 1.5094vw, 3rem);
+}
+
+.title-icon {
+  background-color: #4a4a6a;
+  mask-image: url('./assets/icons/music-drums.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  width: 60px;
+  height: 60px;
+}
+
+.drum-kit {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2.5rem auto;
+  max-width: 600px;
+}
+
+.pad {
+  position: relative;
+  background: linear-gradient(145deg, #2d2d44, #3a3a5a);
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+    -2px -2px 10px rgba(255, 255, 255, 0.05);
+  border: 10px solid #4a4a6a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.pad:hover {
+  background: linear-gradient(145deg, #3a3a5a, #47476b);
+  transform: translateY(-2px);
+}
+
+.pad-icon {
+  content: '';
+  position: absolute;
+  background-color: #000000;
+  mask-image: url('./assets/icons/edit.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  top: -0.5rem;
+  right: -0.5rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  z-index: 1;
+  transition: background-color 0.2s ease;
+}
+
+.pad-icon:hover {
+  background-color: #ff0000;
+  transform: scale(1.1);
+}
+
+.pad.active {
+  background: linear-gradient(145deg, #00b894, #00a085);
+  transform: scale(0.95);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.pad-key {
+  color: #00b894;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.pad-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+}
+
+.pad-input {
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #263e80;
+  border: 2px solid #00b894;
+  border-radius: 6px;
+  background: #00b894;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.key-error {
+  display: block;
+  text-align: center;
+  color: #ff0000;
+  font-size: 1.25rem;
+  font-weight: 800;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.key-error.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pad-key,
+.pad-title {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.play-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.play-btn {
+  position: relative;
+  cursor: pointer;
+  padding: 5px 15px;
+  font-size: 1.5rem;
+  border: 2px solid #4a4a6a;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+    -2px -2px 10px rgba(255, 255, 255, 0.05);
+  background: linear-gradient(145deg, #2d2d44, #3a3a5a);
+  border-radius: 6px;
+  color: #ffffff;
+
+  width: 70px;
+  height: 35px;
+}
+
+.play-btn:before {
+  content: '';
+  position: absolute;
+  background-image: url('./assets/icons/play.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+}
+
+.play-btn:hover {
+  background: linear-gradient(145deg, #3a3a5a, #47476b);
+  transform: translateY(-2px);
+}
+
+.play-btn:active {
+  background: linear-gradient(145deg, #00b894, #00a085);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:disabled,
+.play-input:disabled {
+  cursor: not-allowed;
+  transform: none;
+  background: rgb(151, 151, 151);
+  border-color: rgb(151, 151, 151);
+}
+
+.play-btn:disabled:hover {
+  transform: none;
+}
+
+.play-input {
+  width: 100%;
+  max-width: 500px;
+  height: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #263e80;
+  border: 2px solid #00b894;
+  border-radius: 6px;
+  background: #00b894;
+  outline: none;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 470px) {
+  .drum-kit {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2.5rem auto;
+    max-width: 600px;
+  }
+}
