@@ -1,0 +1,63 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+body {
+  background-color: black;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+  border-color: gray;
+  color: #999999;
+}
+
+input:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+  border-color: gray;
+  user-select: none;
+  pointer-events: none;
+}
+
+.paginate {
+  padding: 3rem 1.25rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.winner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: gold;
+  font-size: 3rem;
+  font-weight: 700;
+  z-index: 100;
+}

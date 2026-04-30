@@ -1,0 +1,57 @@
+.card__wrapper {
+  padding: 0.5rem 1.25rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.card-header,
+.card-item {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  gap: 0.5rem;
+}
+
+.card-stop,
+.card-start {
+  cursor: pointer;
+  color: yellow;
+  font-weight: 400;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid yellow;
+  border-radius: 0.25rem;
+  background-color: inherit;
+  text-transform: uppercase;
+}
+
+.car-img {
+  height: 4rem;
+  z-index: -1;
+}
+
+.flag-img {
+  margin-left: calc(100% - 250px);
+}
+
+.card-select,
+.card-remove {
+  cursor: pointer;
+  color: black;
+  font-weight: 400;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: aqua;
+  text-transform: uppercase;
+}
+
+.card-title {
+  color: yellow;
+  font-weight: 500;
+}
+
+.card-line {
+  min-width: 100%;
+  border-bottom: 1px dashed #ffffff;
+}
