@@ -1,0 +1,44 @@
+.about {
+  padding: 3.75rem 0;
+}
+.about__wrapper {
+  display: flex;
+  gap: 2.5rem;
+  padding: 0 1.25rem;
+}
+.about__item {
+  flex: 1 1 0;
+  height: 100%;
+}
+.about__img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  margin-bottom: 2.5rem;
+}
+
+.about__wrapper .about__item:nth-child(2) .text {
+  margin-bottom: 2.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .about__wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+  .about__img {
+    height: 728px;
+  }
+  .about__wrapper .about__item:nth-child(2) .text {
+    margin: 2.5rem 0;
+  }
+  .about__wrapper .about__item:nth-child(3) img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about__img {
+    height: 340px;
+  }
+}
