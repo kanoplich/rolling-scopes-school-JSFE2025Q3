@@ -1,0 +1,52 @@
+.users-list {
+  width: 100%;
+  padding: 8px 2px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  overflow-y: scroll;
+}
+
+.user-item {
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: all 0.1s ease;
+}
+
+.user-item:hover {
+  background-color: #e1e5e9;
+  border-radius: 8px;
+}
+
+.user-status-online {
+  display: inline-block;
+  background-color: #4caf50;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.user-status-offline {
+  display: inline-block;
+  background-color: #f44336;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.user-login {
+  display: inline-block;
+}
+
+@media screen and (max-width: 480px) {
+  .users-list {
+    max-height: 90px;
+  }
+}

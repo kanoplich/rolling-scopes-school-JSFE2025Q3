@@ -1,0 +1,23 @@
+.dialog-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #999;
+  height: 100%;
+}
+
+.dialog-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 2px;
+
+  height: 400px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}

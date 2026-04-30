@@ -1,0 +1,41 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  font-size: clamp(1.25rem, 1.1444rem + 0.4444vw, 1.5rem);
+}
+
+.footer-link {
+  position: relative;
+  color: #333;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #667eea;
+  transition: width 0.3s ease-in-out;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-year {
+  color: #333;
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 10px;
+  }
+}

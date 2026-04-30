@@ -1,0 +1,21 @@
+.content {
+  display: flex;
+  gap: 5px;
+
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content {
+    flex-direction: column;
+  }
+}
